@@ -365,25 +365,48 @@ window.addEventListener('load', () => {
 
   async function clearState(){
     if(!confirm('Limpar todas as respostas e comentários no sistema?')) return;
-    if (!currentUser || !currentToken) return;
+    if (!currentUser || !currentToken) {
+      alert('Você precisa estar logado para limpar os dados.');
+      return;
+    }
+
     try {
+      showToast('🔄', 'Limpando dados...');
       const res = await fetch('/api/save',{ 
         method:'POST', 
         headers:{'Content-Type':'application/json'}, 
-        body:JSON.stringify({ data: {}, username: currentUser, token: currentToken }) 
+        body:JSON.stringify({ data: { statuses: {}, comments: {} }, username: currentUser, token: currentToken }) 
       });
+      
       if (!res.ok) {
+        const err = await res.json().catch(() => ({}));
         if (res.status === 401) {
           sessionStorage.removeItem('authUser');
           sessionStorage.removeItem('authToken');
-          alert('Sessão expirada. Recarregue a página.');
+          showToast('❌', 'Sessão expirada.');
         } else {
-          alert('Erro ao limpar dados no servidor.');
+          const errorModal = document.getElementById('error-modal');
+          const errorMsg = document.getElementById('error-message-text');
+          if (errorModal && errorMsg) {
+            errorMsg.textContent = err.error || 'Erro ao limpar dados no servidor (500)';
+            errorModal.classList.add('open');
+          }
+          showToast('❌', 'Erro ao limpar.');
         }
         return;
       }
-      location.reload();
-    } catch(e){ alert('Erro de rede ao limpar dados.'); }
+      
+      showToast('✅', 'Sistema resetado!');
+      setTimeout(() => location.reload(), 1000);
+    } catch(e){ 
+      console.error('Erro ao limpar:', e);
+      const errorModal = document.getElementById('error-modal');
+      const errorMsg = document.getElementById('error-message-text');
+      if (errorModal && errorMsg) {
+        errorMsg.textContent = `Falha de Rede: ${e.message}`;
+        errorModal.classList.add('open');
+      }
+    }
   }
 
   // A chamada para loadState() agora acontece APÓS o login
