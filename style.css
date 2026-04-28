@@ -44,8 +44,13 @@
       min-height: 100vh;
       display: flex; align-items: center; justify-content: center;
       z-index: 2;
+    }
+    .hero::before {
+      content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none;
       backdrop-filter: blur(8px);
       -webkit-backdrop-filter: blur(8px);
+      mask-image: linear-gradient(to bottom, black 0%, black 80%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to bottom, black 0%, black 80%, transparent 100%);
     }
     .hero-bg {
       position: fixed; inset: 0;
@@ -923,6 +928,8 @@
       background: url('logos/wallpaper.png') center center / cover no-repeat;
       filter: saturate(.85) contrast(1.05) blur(8px);
       transform: scale(1.05);
+      mask-image: linear-gradient(to bottom, transparent 0%, black 30%, black 100%);
+      -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 30%, black 100%);
     }
     .footer-grain {
       position:absolute; inset:0; opacity:.04;
@@ -933,13 +940,13 @@
     .footer-title {
       font-family: 'Canela', 'Fraunces', serif;
       font-size: clamp(48px, 8vw, 96px);
-      font-weight: 300; color: var(--rose); line-height: 1.0;
+      font-weight: 300; color: #fff; line-height: 1.0;
     }
-    .footer-title em { font-family: 'Canela', 'Fraunces', serif; font-style: italic; color: var(--rose); font-weight: 300; }
-    .footer-div { width:44px; height:1px; background:var(--rose); opacity:.5; margin:26px auto; }
+    .footer-title em { font-family: 'Canela', 'Fraunces', serif; font-style: italic; color: #fff; font-weight: 300; }
+    .footer-div { width:44px; height:1px; background:#fff; opacity:.5; margin:26px auto; }
     .footer-body {
       max-width:420px; margin:0 auto;
-      font-size:14px; line-height:1.72; color: var(--rose); font-weight:300;
+      font-size:14px; line-height:1.72; color: #fff; font-weight:300;
       opacity: 0.9;
     }
     .footer-summary {
@@ -950,15 +957,15 @@
     }
     .fs-item { text-align:center; }
     .fs-num { font-family:'Canela', 'Fraunces', serif; font-size:26px; font-weight:400; line-height:1; transition:all .4s; }
-    .fs-num.green  { color: var(--rose); }
-    .fs-num.yellow { color: var(--rose); }
-    .fs-num.wine   { color: var(--rose); }
-    .fs-lbl { font-size:9px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color: var(--rose); opacity: 0.8; margin-top:4px; }
+    .fs-num.green  { color: #fff; }
+    .fs-num.yellow { color: #fff; }
+    .fs-num.wine   { color: #fff; }
+    .fs-lbl { font-size:9px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color: #fff; opacity: 0.8; margin-top:4px; }
     .footer-sig {
       margin-top:36px; font-size:10px; font-weight:600;
-      letter-spacing:.14em; text-transform:uppercase; color: var(--rose); opacity: 0.8;
+      letter-spacing:.14em; text-transform:uppercase; color: #fff; opacity: 0.8;
     }
-    .footer-sig strong { color: var(--rose); }
+    .footer-sig strong { color: #fff; }
 
     /* Toast */
     #toast {

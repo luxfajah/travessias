@@ -1,0 +1,58 @@
+export default async function handler(req, res) {
+  if (req.method !== 'POST') return res.status(405).json({ error: 'Method Not Allowed' });
+
+  const { data, username, token } = req.body;
+  
+  // 1. Camada de Segurança simples
+  if (!username || !token) {
+    return res.status(401).json({ error: 'Não autorizado' });
+  }
+
+  try {
+    const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
+    const REPO_OWNER = 'luxfajah'; 
+    const REPO_NAME = 'travessias'; 
+    const FILE_PATH = 'database.json'; // O caminho do arquivo no repositório
+
+    // 2. Resgata o "sha" atual do arquivo (necessário para o GitHub permitir a alteração)
+    const getRes = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FILE_PATH}`, {
+      headers: {
+        'Authorization': `Bearer ${GITHUB_TOKEN}`,
+        'Accept': 'application/vnd.github.v3+json'
+      }
+    });
+
+    let sha;
+    if (getRes.ok) {
+      const fileData = await getRes.json();
+      sha = fileData.sha;
+    } else if (getRes.status !== 404) {
+      throw new Error('Falha ao acessar o arquivo atual.');
+    }
+
+    // 3. Converte os dados em string base64
+    const newContent = Buffer.from(JSON.stringify(data, null, 2)).toString('base64');
+
+    // 4. Salva (Commit) os dados no GitHub
+    // CRÍTICO: Utilizar [skip ci] na mensagem de commit para a Vercel não fazer deploy
+    const putRes = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FILE_PATH}`, {
+      method: 'PUT',
+      headers: {
+        'Authorization': `Bearer ${GITHUB_TOKEN}`,
+        'Accept': 'application/vnd.github.v3+json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        message: 'Update database [skip ci]', 
+        content: newContent,
+        sha: sha
+      })
+    });
+
+    if (!putRes.ok) throw new Error('Falha ao comitar no GitHub');
+
+    res.status(200).json({ success: true });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+}
