@@ -1,4 +1,14 @@
 {
-  "statuses": {},
-  "comments": {}
+  "statuses": {
+    "1": "approved",
+    "2": "none",
+    "3": "none",
+    "4": "none"
+  },
+  "comments": {
+    "1": [],
+    "2": [],
+    "3": [],
+    "4": []
+  }
 }
