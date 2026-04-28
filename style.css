@@ -130,8 +130,8 @@
     .reveal.visible { opacity: 1; transform: translateY(0); }
 
     /* ─── OVERVIEW SPLIT ──────────────────────────── */
-    .simulation-wrap {
-      flex: 1; max-width: 420px; width: 100%;
+    .overview-section {
+       max-width: 900px; margin: 0 auto;
     }
 
     /* ─── MODALS ─────────────────────────────────────── */
@@ -208,6 +208,9 @@
     .igp-actions { display: flex; justify-content: flex-start; gap: 8px; margin: 20px 0 0; }
     .igp-btn { padding: 8px 24px; border-radius: 8px; font-size: 14px; font-weight: 600; text-align: center; cursor: pointer; border: none; background: #efefef; color: var(--text); }
     .igp-btn-add { width: 34px; height: 34px; background: #efefef; color: var(--text); display: flex; align-items: center; justify-content: center; font-size: 16px; border-radius: 8px; border: none; }
+    .igp-threads-link { display: flex; align-items: center; gap: 6px; font-size: 14px; color: var(--text); text-decoration: none; margin-bottom: 12px; }
+    .igp-threads-link span { font-weight: 600; }
+    .igp-threads-link svg { flex-shrink: 0; }
 
     /* Highlights */
     .igp-highlights {
@@ -271,22 +274,12 @@
       filter: drop-shadow(0 1px 3px rgba(0,0,0,.5));
     }
 
-    .dashboard-section {
-      padding: 120px 20px;
-      max-width: 1300px;
-      margin: 0 auto;
-      position: relative;
-      z-index: 2;
+    .info-container {
+      position: relative; padding: 120px 20px; z-index: 2;
+      min-height: 100vh; display: flex; align-items: center; justify-content: center;
     }
-    .dashboard-container {
-      display: flex;
-      gap: 60px;
-      align-items: flex-start;
-      justify-content: center;
-    }
-    
     .info-panel {
-      position: relative; flex: 1; max-width: 580px;
+      position: relative; width: 100%; max-width: 680px; margin: 0 auto;
       background: rgba(255, 255, 255, 0.95);
       backdrop-filter: blur(24px);
       -webkit-backdrop-filter: blur(24px);
@@ -571,8 +564,7 @@
 
       /* ── Overview Section ── */
       .overview-section { padding: 0 16px; }
-      .dashboard-container { flex-direction: column; align-items: center; gap: 40px; }
-      .info-panel, .simulation-wrap { max-width: 100%; width: 100%; }
+      .overview-split { flex-direction: column; gap: 24px; }
 
       /* ── IGP Profile Simulation Mobile ── */
       .igp-top { padding: 16px; }
