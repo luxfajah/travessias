@@ -10,11 +10,15 @@ export default async function handler(req, res) {
 
   try {
     const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
+    if (!GITHUB_TOKEN) {
+      return res.status(500).json({ error: 'Erro de Configuração: GITHUB_TOKEN não encontrado nas variáveis de ambiente da Vercel.' });
+    }
+
     const REPO_OWNER = 'luxfajah'; 
     const REPO_NAME = 'travessias'; 
-    const FILE_PATH = 'database.json'; // O caminho do arquivo no repositório
+    const FILE_PATH = 'database.json'; 
 
-    // 2. Resgata o "sha" atual do arquivo (necessário para o GitHub permitir a alteração)
+    // 2. Resgata o "sha" atual do arquivo
     const getRes = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FILE_PATH}`, {
       headers: {
         'Authorization': `Bearer ${GITHUB_TOKEN}`,
@@ -27,14 +31,14 @@ export default async function handler(req, res) {
       const fileData = await getRes.json();
       sha = fileData.sha;
     } else if (getRes.status !== 404) {
-      throw new Error('Falha ao acessar o arquivo atual.');
+      const errorText = await getRes.text();
+      throw new Error(`GitHub API Error (GET): ${getRes.status} ${errorText}`);
     }
 
     // 3. Converte os dados em string base64
     const newContent = Buffer.from(JSON.stringify(data, null, 2)).toString('base64');
 
     // 4. Salva (Commit) os dados no GitHub
-    // CRÍTICO: Utilizar [skip ci] na mensagem de commit para a Vercel não fazer deploy
     const putRes = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FILE_PATH}`, {
       method: 'PUT',
       headers: {
@@ -49,10 +53,14 @@ export default async function handler(req, res) {
       })
     });
 
-    if (!putRes.ok) throw new Error('Falha ao comitar no GitHub');
+    if (!putRes.ok) {
+      const errorText = await putRes.text();
+      throw new Error(`GitHub API Error (PUT): ${putRes.status} ${errorText}`);
+    }
 
     res.status(200).json({ success: true });
   } catch (error) {
+    console.error('Save Error:', error);
     res.status(500).json({ error: error.message });
   }
 }
