@@ -569,7 +569,17 @@
   </div>
 </section>
 
-<!-- ════════════════════════ FOOTER ════════════════════════ -->
+<!-- Modal de Erro Persistente -->
+<div id="error-modal" class="error-modal">
+  <div class="error-content">
+    <button class="error-close" id="closeErrorModal" onclick="document.getElementById('error-modal').classList.remove('open')">&times;</button>
+    <div style="font-size: 40px; margin-bottom: 15px;">⚠️</div>
+    <h3 style="margin-bottom: 10px; font-family: 'Canela', serif;">Erro no Servidor</h3>
+    <p style="font-size: 14px; color: #666; margin-bottom: 20px;">Não foi possível completar a ação. Por favor, copie a mensagem de erro abaixo:</p>
+    <div id="error-message-text" style="background: #f8f8f8; padding: 15px; border-radius: 12px; font-family: monospace; font-size: 13px; color: #d00; margin-bottom: 20px; word-break: break-all; text-align: left; border: 1px solid #eee;"></div>
+    <button class="abtn btn-ap" style="width: 100%;" onclick="document.getElementById('error-modal').classList.remove('open')">Entendido</button>
+  </div>
+</div>
 <footer class="footer">
   <div class="footer-bg"></div>
   <div class="footer-grain"></div>

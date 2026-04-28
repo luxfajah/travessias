@@ -304,7 +304,14 @@ window.addEventListener('load', () => {
           sessionStorage.removeItem('authToken');
           showToast('❌', 'Sessão expirada. Recarregue a página.');
         } else {
-          showToast('❌', `Erro: ${err.error || 'Erro no servidor'}`);
+          // Mostra modal de erro detalhado
+          const errorModal = document.getElementById('error-modal');
+          const errorMsg = document.getElementById('error-message-text');
+          if (errorModal && errorMsg) {
+            errorMsg.textContent = err.error || 'Erro interno no servidor (500)';
+            errorModal.classList.add('open');
+          }
+          showToast('❌', 'Erro ao salvar.');
         }
         return;
       }
@@ -313,7 +320,13 @@ window.addEventListener('load', () => {
       showToast('☁️', 'Salvo na nuvem!');
     } catch(e){ 
       console.error('Erro ao salvar:',e); 
-      showToast('❌', `Conexão: ${e.message}`);
+      const errorModal = document.getElementById('error-modal');
+      const errorMsg = document.getElementById('error-message-text');
+      if (errorModal && errorMsg) {
+        errorMsg.textContent = `Falha de Conexão: ${e.message}`;
+        errorModal.classList.add('open');
+      }
+      showToast('❌', 'Falha de conexão.');
     }
   }
 
