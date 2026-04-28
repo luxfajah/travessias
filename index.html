@@ -75,6 +75,10 @@
 <!-- ════════════════════════ INFO PANEL (SEC: 2) ════════════════════════ -->
 <section id="infoPanelSection" class="info-container">
   <div class="info-panel">
+    <a href="https://drive.google.com/drive/folders/1OrS5icvgb3ImJ2pegsqVSUN5QivoMb1l?usp=drive_link" target="_blank" class="download-all-btn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Baixar Todos os Posts
+    </a>
     
     <div class="sticker-wrap" data-speed="0.2" style="top: -80px; right: -90px;">
       <img src="../1.webp" class="sticker" style="width: 85px; animation-delay: 0.5s;">
@@ -87,32 +91,112 @@
     <h2 class="info-title">Conteúdo para<br><em>revisão e aprovação</em></h2>
     <div class="info-divider"></div>
 
-    <div class="info-row">
-      <div class="info-icon">📋</div>
-      <div>
-        <div class="info-label">Foco do mês</div>
-        <div class="info-value">Lançamento da nova identidade visual, apresentação da psicóloga e posicionamento de marca.</div>
+    <div class="info-grid-content">
+      <div class="info-summary-col">
+        <div class="info-row">
+          <div class="info-icon">📋</div>
+          <div>
+            <div class="info-label">Foco do mês</div>
+            <div class="info-value">Lançamento da nova identidade visual, apresentação da psicóloga e posicionamento de marca.</div>
+          </div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon">📅</div>
+          <div>
+            <div class="info-label">Período das postagens</div>
+            <div class="info-value">Maio de 2026</div>
+          </div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon">⏰</div>
+          <div>
+            <div class="info-label">Prazo para aprovação</div>
+            <div class="info-value">Em aberto — responda quando preferir</div>
+          </div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon">🎯</div>
+          <div>
+            <div class="info-label">Funil de conteúdo</div>
+            <div class="info-value">Topo → Meio → Fundo · 6 publicações estratégicas</div>
+          </div>
+        </div>
       </div>
-    </div>
-    <div class="info-row">
-      <div class="info-icon">📅</div>
-      <div>
-        <div class="info-label">Período das postagens</div>
-        <div class="info-value">Maio de 2026</div>
-      </div>
-    </div>
-    <div class="info-row">
-      <div class="info-icon">⏰</div>
-      <div>
-        <div class="info-label">Prazo para aprovação</div>
-        <div class="info-value">Em aberto — responda quando preferir</div>
-      </div>
-    </div>
-    <div class="info-row">
-      <div class="info-icon">🎯</div>
-      <div>
-        <div class="info-label">Funil de conteúdo</div>
-        <div class="info-value">Topo → Meio → Fundo · 6 publicações estratégicas</div>
+
+      <div class="info-calendar-col">
+        <div class="calendar-wrapper">
+          <div class="calendar-header">
+            <div class="calendar-day-name">D</div>
+            <div class="calendar-day-name">S</div>
+            <div class="calendar-day-name">T</div>
+            <div class="calendar-day-name">Q</div>
+            <div class="calendar-day-name">Q</div>
+            <div class="calendar-day-name">S</div>
+            <div class="calendar-day-name">S</div>
+          </div>
+          <div class="calendar-grid">
+            <!-- Week 1 -->
+            <div class="calendar-day empty"></div>
+            <div class="calendar-day empty"></div>
+            <div class="calendar-day empty"></div>
+            <div class="calendar-day empty"></div>
+            <div class="calendar-day empty"></div>
+            <div class="calendar-day">1</div>
+            <div class="calendar-day">2</div>
+            <!-- Week 2 -->
+            <div class="calendar-day">3</div>
+            <div class="calendar-day has-post" onclick="goToPost(0)" title="Post 1">
+              <img src="Posts/WebP/Post 1 - 1.webp" alt="Post 1">
+              <div class="day-number">4</div>
+            </div>
+            <div class="calendar-day">5</div>
+            <div class="calendar-day">6</div>
+            <div class="calendar-day">7</div>
+            <div class="calendar-day">8</div>
+            <div class="calendar-day">9</div>
+            <!-- Week 3 -->
+            <div class="calendar-day">10</div>
+            <div class="calendar-day">11</div>
+            <div class="calendar-day">12</div>
+            <div class="calendar-day">13</div>
+            <div class="calendar-day has-post" onclick="goToPost(1)" title="Post 2">
+              <img src="Posts/WebP/Post 2.webp" alt="Post 2">
+              <div class="day-number">14</div>
+            </div>
+            <div class="calendar-day">15</div>
+            <div class="calendar-day">16</div>
+            <!-- Week 4 -->
+            <div class="calendar-day">17</div>
+            <div class="calendar-day">18</div>
+            <div class="calendar-day has-post" onclick="goToPost(2)" title="Post 3">
+              <img src="Posts/WebP/Post 3 - 1.webp" alt="Post 3">
+              <div class="day-number">19</div>
+            </div>
+            <div class="calendar-day">20</div>
+            <div class="calendar-day">21</div>
+            <div class="calendar-day">22</div>
+            <div class="calendar-day">23</div>
+            <!-- Week 5 -->
+            <div class="calendar-day">24</div>
+            <div class="calendar-day">25</div>
+            <div class="calendar-day">26</div>
+            <div class="calendar-day">27</div>
+            <div class="calendar-day has-post" onclick="goToPost(3)" title="Post 4">
+              <img src="Posts/WebP/Post 4 - 1.webp" alt="Post 4">
+              <div class="day-number">28</div>
+            </div>
+            <div class="calendar-day">29</div>
+            <div class="calendar-day">30</div>
+            <!-- Week 6 -->
+            <div class="calendar-day">31</div>
+            <div class="calendar-day empty"></div>
+            <div class="calendar-day empty"></div>
+            <div class="calendar-day empty"></div>
+            <div class="calendar-day empty"></div>
+            <div class="calendar-day empty"></div>
+            <div class="calendar-day empty"></div>
+          </div>
+        </div>
       </div>
     </div>
 
