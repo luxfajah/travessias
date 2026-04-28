@@ -197,7 +197,7 @@ window.addEventListener('load', () => {
     div.className = 'comment-item';
     
     // Define o nome de exibição baseado no usuário logado
-    const displayName = (currentUser === 'gabriellylima') ? 'Gabrielly Lima' : 'Duas Mãos (Admin)';
+    const displayName = (currentUser === 'travessias@duasmaos.com.br') ? 'Travessias' : 'Duas Mãos (Admin)';
     
     div.innerHTML = `<div class="c-meta"><strong>${displayName}</strong> · ${ts}</div><div class="c-text">${txt}</div>`;
     cl.appendChild(div);
@@ -231,12 +231,17 @@ window.addEventListener('load', () => {
   const loginBtn = document.getElementById('login-btn');
   const loginError = document.getElementById('login-error');
   
-  let currentUser = sessionStorage.getItem('authUser') || 'admin';
-  let currentToken = sessionStorage.getItem('authToken') || 'admin_token';
+  let currentUser = sessionStorage.getItem('authUser') || '';
+  let currentToken = sessionStorage.getItem('authToken') || '';
 
-  if(loginScreen) loginScreen.classList.add('hidden');
-  document.body.classList.remove('locked');
-  loadState();
+  if (!currentUser || !currentToken) {
+    if (loginScreen) loginScreen.classList.remove('hidden');
+    document.body.classList.add('locked');
+  } else {
+    if (loginScreen) loginScreen.classList.add('hidden');
+    document.body.classList.remove('locked');
+    loadState();
+  }
 
   if(loginBtn) {
     loginBtn.addEventListener('click', async () => {
@@ -376,11 +381,61 @@ window.addEventListener('load', () => {
   },{ threshold:0.1, rootMargin:'0px 0px -40px 0px' });
   document.querySelectorAll('.reveal').forEach(el=>revealObserver.observe(el));
 
-  /* ── Removed Lightbox ── */
-
-
-
+  /* ══ Lightbox module ════════════════════════════════════ */
   let lbPost=null, lbIdx=0;
+
+  const lbSources = {
+    '1': ['Posts/WebP/Post 1 - 1.webp', 'Posts/WebP/Post 1 - 2.webp', 'Posts/WebP/Post 1 - 3.webp', 'Posts/WebP/Post 1 - 4.webp', 'Posts/WebP/Post 1 - 5.webp', 'Posts/WebP/Post 1 - 6.webp', 'Posts/WebP/Post 1 - 7.webp', 'Posts/WebP/Post 1 - 8.webp'],
+    '2': ['Posts/WebP/Post 2.webp'],
+    '3': ['Posts/WebP/Post 3 - 1.webp', 'Posts/WebP/Post 3 - 2.webp', 'Posts/WebP/Post 3 - 3.webp', 'Posts/WebP/Post 3 - 4.webp', 'Posts/WebP/Post 3 - 5.webp', 'Posts/WebP/Post 3 - 6.webp'],
+    '4': ['Posts/WebP/Post 4 - 1.webp', 'Posts/WebP/Post 4 - 2.webp', 'Posts/WebP/Post 4 - 3.webp', 'Posts/WebP/Post 4 - 4.webp', 'Posts/WebP/Post 4 - 5.webp', 'Posts/WebP/Post 4 - 6.webp', 'Posts/WebP/Post 4 - 7.webp', 'Posts/WebP/Post 4 - 8.webp'],
+    'comece-aqui': ['destaque 1.jpg'],
+    'agende': ['destaque 2.jpg']
+  };
+
+  const postMeta = {
+    '1': {
+      caption: 'Essa citação é de Roberto Crema, um grande expoente da abordagem Transpessoal. Ela nos faz refletir sobre algo muito curioso: sobre o encontro, uma das palavras mais bonitas da experiência humana.',
+      cards: [
+        '“Ninguém transforma ninguém. Ninguém se transforma sozinha. Nós nos transformamos no Encontro”',
+        'No Encontro com as nossas emoções, crenças e padrões…',
+        'No Encontro com outras pessoas, culturas e visões de mundo…',
+        'No Encontro com algo além do ego, com aquilo que dá sentido à vida: a Espiritualidade',
+        'Do Encontro da Psicologia Transpessoal com a Intercultural surge uma abordagem que amplia o olhar sobre a pessoa que migra.',
+        '…mas como alguém que atravessa questões existenciais profundas de sentido, pertencimento, conexão e transcendência.',
+        'Recursos técnicos como a integração simbólica de sonhos, mindfulness e desenho e escrita terapêutica são algumas das ferramentas aplicadas.',
+        'Se fez sentido pra você, compartilhe com aquela amiga que transforma cada encontro em travessia <3'
+      ]
+    },
+    '2': {
+      caption: 'Os feedbacks de vocês são muito significativos para nós, porque eles mostram exatamente o que acontece quando decidimos não atravessar sozinhas.',
+      cards: ['O que a Comunidade Travessias está falando:']
+    },
+    '3': {
+      caption: 'Quando você atravessa países, culturas e versões de si mesma, não é só o pensamento que precisa de espaço, o corpo sente, os sonhos se movem, as emoções ganham outras camadas.',
+      cards: [
+        '“Entre mundos: nem daqui, nem de lá.” E o que a psicologia transpessoal diz sobre esse lugar…',
+        'Os antropólogos o chamam de "entre-lugar", o espaço de quem pertence a dois ou mais mundos, mas não é completamente de nenhum.',
+        'Por vezes, pode ser desconfortável, mas nos dá acesso a um dos lugares mais férteis para saber quem você é de verdade.',
+        'A Psicologia Transpessoal entende esse espaço como um portal. Ela parte de uma premissa simples: você não é só sua história pessoal.',
+        'Quando você migra, todas essas camadas se movem ao mesmo tempo.',
+        'O Travessias trabalha nos pensamentos que permeiam sua mente, nas tensões que se manifestam no seu corpo, nos símbolos que surgem dos seus sonhos.'
+      ]
+    },
+    '4': {
+      caption: 'Inscrições abertas para a Jornada Travessias até 08 de Maio. Ainda tem dúvidas? Passe para o lado e entenda mais!',
+      cards: [
+        'Chegou a hora da nossa primeira Jornada Travessias de 2026. Tem dúvidas sobre o processo? Aqui, tudo que você precisa saber!',
+        'As inscrições abrem apenas 2x ao ano. O processo é intenso, individual e altamente personalizado.',
+        'A Jornada acontece em 8 encontros, online e ao vivo, para você que está em qualquer parte desse mundo.',
+        'Então, saiba que a jornada é para você que busca mais clareza sobre onde está e para onde deseja ir.',
+        'Quem já participou deixou um recado para você: "Uma jornada deliciosa! Fui guiada a um encontro comigo mesma num momento chave da vida."',
+        'Para essa experiência ser adequada à sua travessia, ferramentas que acessam camadas profundas são utilizadas.',
+        'Com a Jornada Travessias, você constrói uma relação mais consciente com o que está vivendo.',
+        'Inscrições abertas para a Jornada Travessias até 08 de Maio.'
+      ]
+    }
+  };
 
   function openLightbox(postId){
     lbPost=postId; lbIdx=ig[postId]?ig[postId].i:0;
@@ -393,13 +448,10 @@ window.addEventListener('load', () => {
   function renderLightbox(){
     const srcs=lbSources[lbPost]; if(!srcs) return;
     const total=srcs.length;
-    const sc=document.getElementById('lbSC');
-    const img=document.getElementById('lbImg');
     const prev=document.getElementById('lbPrev');
     const next=document.getElementById('lbNext');
     const dots=document.getElementById('lbDots');
 
-    // Render slides into track if not already rendered
     const track=document.getElementById('lbTrack');
     if(track.getAttribute('data-post') !== lbPost){
       track.innerHTML = '';
@@ -410,13 +462,10 @@ window.addEventListener('load', () => {
         track.appendChild(div);
       });
       track.setAttribute('data-post', lbPost);
-      // Wait a tick to ensure no animation on initial load
       track.style.transition = 'none';
       track.style.transform = `translateX(0%)`;
     }
 
-    // Apply translation
-    // restore transition if needed
     setTimeout(()=>{ track.style.transition = 'transform .35s cubic-bezier(0.25, 1, 0.5, 1)'; }, 10);
     track.style.transform = `translateX(-${lbIdx * 100}%)`;
 
@@ -428,10 +477,9 @@ window.addEventListener('load', () => {
 
   function populateLbRight(postId){
     const meta=postMeta[postId]||{};
-    // Caption
     const cap=document.getElementById('lbCaption');
-    cap.innerHTML=`<strong>gabriellylimapsi</strong> ${meta.caption||''}`;
-    // Cards
+    cap.innerHTML=`<strong>travessiaspsi</strong> ${meta.caption||''}`;
+    
     const cardsEl=document.getElementById('lbCards');
     if(meta.cards&&meta.cards.length){
       cardsEl.innerHTML='<div style="font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#999;margin-bottom:6px">SLIDES</div>';
@@ -442,16 +490,16 @@ window.addEventListener('load', () => {
         cardsEl.appendChild(d);
       });
     } else { cardsEl.innerHTML=''; }
-    // Comments
+
     const cl=document.getElementById(`comments-${postId}`);
     const lbCL=document.getElementById('lbCommentsList');
     lbCL.innerHTML='';
     if(cl){
-      const items=cl.querySelectorAll('.c-item');
-      if(items.length){ items.forEach(it=>{ const d=document.createElement('div'); d.style.cssText='font-size:11px;line-height:1.5;color:#333'; d.innerHTML=it.innerHTML; lbCL.appendChild(d); }); }
+      const items=cl.querySelectorAll('.comment-item');
+      if(items.length){ items.forEach(it=>{ const d=document.createElement('div'); d.style.cssText='font-size:11px;line-height:1.5;color:#333;margin-bottom:8px;padding:8px;background:#f9f9f9;border-radius:8px;'; d.innerHTML=it.innerHTML; lbCL.appendChild(d); }); }
       else { lbCL.innerHTML='<div style="font-size:11px;color:#aaa;font-style:italic">Nenhum feedback ainda.</div>'; }
     }
-    // Actions
+
     const ar=document.getElementById('lbActionRow');
     const st=statuses[postId]||'none';
     ar.innerHTML=`
@@ -459,109 +507,67 @@ window.addEventListener('load', () => {
       <button class="lb-abtn lb-abtn-rj${st==='rejected'?' active':''}" onclick="setStatus('${postId}','rejected');populateLbRight('${postId}')">✎ Reprovar</button>
       <button class="lb-abtn lb-abtn-lt${st==='pending'?' active':''}" onclick="setStatus('${postId}','pending');populateLbRight('${postId}')">⏳ Revisar</button>
     `;
-    // Textarea
     document.getElementById('lbTextarea').value='';
   }
 
   function lbSendComment(){
     if(!lbPost) return;
-    addComment(lbPost); // reuse existing addComment
+    const txt = document.getElementById('lbTextarea').value.trim();
+    if(!txt) return;
+    addCommentByText(lbPost, txt);
     setTimeout(()=>populateLbRight(lbPost),50);
   }
 
-  function lbGo(idx){
-    lbIdx=idx; renderLightbox();
-  }
+  function lbGo(idx){ lbIdx=idx; renderLightbox(); }
   function lbSlide(dir){ const newIdx=lbIdx+dir; if(newIdx<0||newIdx>=lbSources[lbPost].length) return; lbGo(newIdx); }
   function closeLightbox(){ document.getElementById('lightbox').classList.remove('open'); document.body.style.overflow=''; lbPost=null; }
   document.addEventListener('keydown',(e)=>{ if(!lbPost) return; if(e.key==='Escape') closeLightbox(); if(e.key==='ArrowRight') lbSlide(1); if(e.key==='ArrowLeft') lbSlide(-1); });
 
 
-
-
-
 /* ══ Project Viewer ════════════════════════════════════════ */
 const projectData = {
   '1': {
-    title: 'Apresentação da Marca Nova',
+    title: 'Educacional: Roberto Crema',
     sections: [
-      { img: 'Posts/Post 1 - 10.webp', sub: 'O Início', text: 'Por muito tempo, existir foi tentar caber: em formas, em vínculos, em expectativas que nunca fizeram sentido.' },
-      { img: 'Posts/Post 1 - 20.webp', sub: 'Nova Identidade', text: 'A logo traz referência à "ovelha colorida e gotica" como símbolo de singularidade, de uma forma de existir que não se encaixa em padrões.' },
-      { img: 'Posts/Post 1 - 30.webp', sub: 'Singularidade', text: 'Essa é também a base da minha prática clínica: escuta profunda, responsabilidade & respeito pela complexidade de cada pessoa.' },
-      { img: 'Posts/Post 1 - 40.webp', sub: 'Caminhada', text: 'Convido você a ficar por aqui e acompanhar os próximos passos dessa caminhada <3' },
-      { img: 'Posts/Post 1 - 50.webp', sub: 'Essência', text: 'Um novo momento focado na verdade e na expressão autêntica de quem somos.' }
+      { img: 'Posts/WebP/Post 1 - 1.webp', sub: 'O Encontro', text: '“Ninguém transforma ninguém. Ninguém se transforma sozinha. Nós nos transformamos no Encontro”' },
+      { img: 'Posts/WebP/Post 1 - 2.webp', sub: 'Emoções', text: 'No Encontro com as nossas emoções, crenças e padrões…' },
+      { img: 'Posts/WebP/Post 1 - 3.webp', sub: 'Culturas', text: 'No Encontro com outras pessoas, culturas e visões de mundo…' },
+      { img: 'Posts/WebP/Post 1 - 4.webp', sub: 'Espiritualidade', text: 'No Encontro com algo além do ego, with aquilo que dá sentido à vida: a Espiritualidade' },
+      { img: 'Posts/WebP/Post 1 - 5.webp', sub: 'Abordagem', text: 'Do Encontro da Psicologia Transpessoal com a Intercultural surge uma abordagem que amplia o olhar sobre a pessoa que migra.' }
     ]
   },
   '2': {
-    title: 'Quem sou eu?',
+    title: 'Prova Social',
     sections: [
-      { img: 'Posts/Post 2 - 10.webp', sub: 'Perfil Profissional', text: 'Sou psicóloga clínica com atuação online para todo o Brasil. Meu trabalho é direcionado a pessoas que sempre sentiram que não cabiam nos modelos tradicionais.' },
-      { img: 'Posts/Post 2 - 20.webp', sub: 'Prática Clínica', text: 'Minha prática nasce da observação atenta das margens, dos desvios e das subjetividades que escapam das normas invisíveis.' },
-      { img: 'Posts/Post 2 - 30.webp', sub: 'Formação Ética', text: 'Com escuta qualificada e ética relacional, busco sustentar processos complexos com calma, lucidez e responsabilidade clínica.' },
-      { img: 'Posts/Post 2 - 140.webp', sub: 'Visão de Mundo', text: 'Essa forma que me constituo enquanto profissional também tem origens na forma que eu vejo o mundo e as pessoas.' }
+      { img: 'Posts/WebP/Post 2.webp', sub: 'Comunidade', text: 'Os feedbacks de vocês são muito significativos para nós, porque eles mostram exatamente o que acontece quando decidimos não atravessar sozinhas.' }
     ]
   },
   '3': {
-    title: 'A psicologia que eu acredito',
+    title: 'Entre mundos',
     sections: [
-      { img: 'Posts/Post 3.webp', sub: 'Poder existir!', text: 'Existir parece simples, mas, para muita gente, nunca foi. A psicologia que eu acredito começa na possibilidade de existir com todas as suas nuances.' }
+      { img: 'Posts/WebP/Post 3 - 1.webp', sub: 'Nem daqui, nem de lá', text: '“Entre mundos: nem daqui, nem de lá.” E o que a psicologia transpessoal diz sobre esse lugar…' },
+      { img: 'Posts/WebP/Post 3 - 2.webp', sub: 'Entre-lugar', text: 'Os antropólogos o chamam de "entre-lugar", o espaço de quem pertence a dois ou mais mundos.' },
+      { img: 'Posts/WebP/Post 3 - 3.webp', sub: 'Fértil', text: 'Por vezes, pode ser desconfortável, mas nos dá acesso a um dos lugares mais férteis para saber quem você é de verdade.' }
     ]
   },
   '4': {
-    title: 'Como ser atendida por mim?',
+    title: 'Jornada Travessias',
     sections: [
-      { img: 'Posts/Post 4.webp', sub: 'Atendimento Online', text: 'Meu trabalho acontece de forma online, então consigo atender pessoas de qualquer lugar, do Brasil ou de fora. O primeiro passo é simples: você me chama e conversamos.' }
-    ]
-  },
-  '5': {
-    title: 'Quebrando objeções da terapia',
-    sections: [
-      { img: 'Posts/Post 5 - 1.webp', sub: 'O Chamado', text: 'Nem sempre é um "grande problema" que leva alguém pra terapia… Às vezes é só um incômodo que vai ficando.' },
-      { img: 'Posts/Post 5 - 2.webp', sub: 'Nomenclaturas', text: 'Às vezes, é só uma sensação difícil de nomear. Um espaço para dar nome ao que dói.' },
-      { img: 'Posts/Post 5 - 3.webp', sub: 'Novos Caminhos', text: 'Em momentos que você sente que já mudou tantas vezes de caminho e agora só segue no automático…' },
-      { img: 'Posts/Post 5 - 4.webp', sub: 'Entendimento', text: 'Quando você cansa de tentar se explicar e começa a querer se entender de verdade.' },
-      { img: 'Posts/Post 5 - 5.webp', sub: 'Espaço Seguro', text: 'A terapia é um espaço seguro para olhar para o que é importante para você, no seu tempo.' }
-    ]
-  },
-  '6': {
-    title: 'Coisas que não cabem em caixas',
-    sections: [
-      { img: 'Posts/Post 6.webp', sub: 'Identidade', text: 'Tem coisas que, por mais que a gente tente, não cabem em uma caixinha. Identidade, relacionamentos, desejos, formas de viver…' }
+      { img: 'Posts/WebP/Post 4 - 1.webp', sub: 'Inscrições', text: 'Chegou a hora da nossa primeira Jornada Travessias de 2026. Tudo que você precisa saber!' },
+      { img: 'Posts/WebP/Post 4 - 2.webp', sub: 'Personalizado', text: 'As inscrições abrem apenas 2x ao ano. O processo é intenso, individual e altamente personalizado.' },
+      { img: 'Posts/WebP/Post 4 - 3.webp', sub: 'Encontros', text: 'A Jornada acontece em 8 encontros, online e ao vivo, para você que está em qualquer parte desse mundo.' }
     ]
   },
   'comece-aqui': {
     title: 'Comece Aqui',
     sections: [
-      {
-        img: 'Posts/Destaque -comece aqui slide 1.webp',
-        sub: '#2026',
-        text: 'O meu trabalho não busca te ajustar, mas criar um espaço onde você possa existir com a sua mais completa verdade. Em 2026, iniciamos um novo capítulo focado em autenticidade.'
-      },
-      {
-        img: 'Posts/Destaque -comece aqui slide 2.webp',
-        sub: 'Singularidade',
-        text: 'Minha atuação é direcionada a pessoas que sempre sentiram que não cabiam nos modelos tradicionais de vínculo, identidade ou relação. Acreditamos na beleza do que é único.'
-      },
-      {
-        img: 'Posts/Destaque -comece aqui slide 3.webp',
-        sub: 'Espaço Online',
-        text: 'Os atendimentos são online, realizados para todo o Brasil, e acontecem em um espaço contínuo de escuta e acolhimento clínico.'
-      },
-      {
-        img: 'Posts/Destaque -comece aqui slide 4.webp',
-        sub: 'Vamos conversar?',
-        text: 'Quer saber mais sobre o processo? Vamos agendar a primeira conversa para você entender como funciona a psicoterapia!'
-      }
+      { img: 'destaque 1.jpg', sub: 'Boas-vindas', text: 'Olá! Seja bem-vindo(a) ao meu espaço! Aqui iniciamos nossa travessia.' }
     ]
   },
   'agende': {
-    title: 'Agende a sua consulta',
+    title: 'Agende',
     sections: [
-      {
-        img: 'Posts/Destaque- agende  slide 1.webp',
-        sub: 'Acesso Simples',
-        text: 'Para agendar a sua consulta, basta entrar em contato. O processo é simples e focado no seu bem-estar.'
-      }
+      { img: 'destaque 2.jpg', sub: 'Contato', text: 'Link na Bio para agendamentos! Vamos conversar?' }
     ]
   }
 };
