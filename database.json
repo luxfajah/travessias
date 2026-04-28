@@ -2,7 +2,7 @@
   "statuses": {
     "1": "pending",
     "2": "rejected",
-    "3": "none",
+    "3": "approved",
     "4": "none"
   },
   "comments": {
