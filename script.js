@@ -298,12 +298,13 @@ window.addEventListener('load', () => {
       });
       
       if (!res.ok) {
+        const err = await res.json().catch(() => ({}));
         if (res.status === 401) {
           sessionStorage.removeItem('authUser');
           sessionStorage.removeItem('authToken');
           showToast('❌', 'Sessão expirada. Recarregue a página.');
         } else {
-          showToast('❌', 'Erro ao salvar no servidor.');
+          showToast('❌', `Erro: ${err.error || 'Erro no servidor'}`);
         }
         return;
       }
@@ -312,7 +313,7 @@ window.addEventListener('load', () => {
       showToast('☁️', 'Salvo na nuvem!');
     } catch(e){ 
       console.error('Erro ao salvar:',e); 
-      showToast('❌', 'Erro de conexão.');
+      showToast('❌', `Conexão: ${e.message}`);
     }
   }
 
