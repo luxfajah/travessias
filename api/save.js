@@ -18,11 +18,12 @@ export default async function handler(req, res) {
     const REPO_NAME = 'travessias'; 
     const FILE_PATH = 'database.json'; 
 
-    // 2. Resgata o "sha" atual do arquivo
-    const getRes = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FILE_PATH}`, {
+    // 2. Resgata o "sha" atual do arquivo (com cache-busting para evitar erro 409)
+    const getRes = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FILE_PATH}?t=${Date.now()}`, {
       headers: {
         'Authorization': `Bearer ${GITHUB_TOKEN}`,
-        'Accept': 'application/vnd.github.v3+json'
+        'Accept': 'application/vnd.github.v3+json',
+        'Cache-Control': 'no-cache'
       }
     });
 
