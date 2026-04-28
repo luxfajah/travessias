@@ -7,10 +7,18 @@
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,700;1,9..144,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="style.css?v=2.4"/>
-</head>
-<body class="locked">
 
+  <link rel="stylesheet" href="style.css?v=2.2"/>
+  <style>
+    /* Critical CSS to prevent flash of content */
+    .preloader {
+      position: fixed; inset: 0; background: #FAF7F5; z-index: 100000;
+      display: flex; align-items: center; justify-content: center;
+      transition: opacity 0.6s, visibility 0.6s;
+    }
+  </style>
+</head>
+<body>
 <!-- Preloader -->
 <div id="preloader" class="preloader">
   <div class="loader-content">
@@ -40,9 +48,15 @@
 <div class="hero-overlay"></div>
 <div class="hero-grain"></div>
 
-<script defer src="script.js"></script>
+
 
   <section class="hero" id="heroSec">
+    <div class="sticker-wrap" data-speed="0.15" style="top: 10%; left: 0%;">
+      <img src="../2.webp" class="sticker" style="width: 100px; animation-delay: 0s;">
+    </div>
+    <div class="sticker-wrap" data-speed="0.25" style="bottom: 15%; right: 0%;">
+      <img src="../3.webp" class="sticker" style="width: 90px; animation-delay: 1.5s;">
+    </div>
     <div class="hero-content">
       <div class="hero-eyebrow"><span class="dot"></span>Planejamento de conteúdo · Abril 2026</div>
       <img src="logos/logo.png" class="hero-logo-img" alt="Travessias" fetchpriority="high">
@@ -53,124 +67,184 @@
         <div class="pb-label" id="pbLabel"><strong>0</strong> de 4 aprovados</div>
       </div>
     </div>
-    <div class="hero-scroll" onclick="document.getElementById('dashboard').scrollIntoView({behavior:'smooth'})">
+    <div class="hero-scroll" onclick="document.getElementById('infoPanelSection').scrollIntoView({behavior:'smooth'})">
       <div class="scroll-line"></div>Rolar
     </div>
   </section>
 
-<!-- ════════════════════════ DASHBOARD ════════════════════════ -->
-<section id="dashboard" class="dashboard-section">
-  <div class="dashboard-container">
+<!-- ════════════════════════ INFO PANEL (SEC: 2) ════════════════════════ -->
+<section id="infoPanelSection" class="info-container">
+  <div class="info-panel">
     
-    <!-- LEFT: Info Panel -->
-    <div class="info-panel reveal">
-      <div class="info-eyebrow">Planejamento · Abril 2026</div>
-      <h2 class="info-title">Conteúdo para<br><em>revisão e aprovação</em></h2>
-      <div class="info-divider"></div>
+    <div class="sticker-wrap" data-speed="0.2" style="top: -80px; right: -90px;">
+      <img src="../1.webp" class="sticker" style="width: 85px; animation-delay: 0.5s;">
+    </div>
+    <div class="sticker-wrap" data-speed="0.1" style="bottom: -80px; left: -90px;">
+      <img src="../2.webp" class="sticker" style="width: 90px; animation-delay: 2s;">
+    </div>
 
-      <div class="info-row">
-        <div class="info-icon">📋</div>
-        <div>
-          <div class="info-label">Foco do mês</div>
-          <div class="info-value">Lançamento da nova identidade visual, apresentação da psicóloga e posicionamento de marca.</div>
-        </div>
-      </div>
-      <div class="info-row">
-        <div class="info-icon">📅</div>
-        <div>
-          <div class="info-label">Período das postagens</div>
-          <div class="info-value">Abril de 2026</div>
-        </div>
-      </div>
-      <div class="info-row">
-        <div class="info-icon">🎯</div>
-        <div>
-          <div class="info-label">Funil de conteúdo</div>
-          <div class="info-value">Topo → Meio → Fundo · 6 publicações estratégicas</div>
-        </div>
-      </div>
+    <div class="info-eyebrow">Planejamento · Abril 2026</div>
+    <h2 class="info-title">Conteúdo para<br><em>revisão e aprovação</em></h2>
+    <div class="info-divider"></div>
 
-      <div class="info-progress">
-        <div class="info-label">Progresso de aprovação</div>
-        <div class="info-progress-bar">
-          <div class="info-progress-fill" id="infoFill" style="width:0%"></div>
-        </div>
-        <div class="info-progress-label">
-          <span id="infoCount">0 de 4 aprovados</span>
-          <button class="btn-clear" onclick="clearState()">↺ Limpar</button>
-        </div>
+    <div class="info-row">
+      <div class="info-icon">📋</div>
+      <div>
+        <div class="info-label">Foco do mês</div>
+        <div class="info-value">Lançamento da nova identidade visual, apresentação da psicóloga e posicionamento de marca.</div>
+      </div>
+    </div>
+    <div class="info-row">
+      <div class="info-icon">📅</div>
+      <div>
+        <div class="info-label">Período das postagens</div>
+        <div class="info-value">Abril de 2026</div>
+      </div>
+    </div>
+    <div class="info-row">
+      <div class="info-icon">⏰</div>
+      <div>
+        <div class="info-label">Prazo para aprovação</div>
+        <div class="info-value">Em aberto — responda quando preferir</div>
+      </div>
+    </div>
+    <div class="info-row">
+      <div class="info-icon">🎯</div>
+      <div>
+        <div class="info-label">Funil de conteúdo</div>
+        <div class="info-value">Topo → Meio → Fundo · 6 publicações estratégicas</div>
       </div>
     </div>
 
-    <!-- RIGHT: Simulation -->
-    <div class="simulation-wrap reveal">
-      <div class="igp">
-        <div class="igp-top">
-          <div class="igp-header-main">
-            <div class="igp-avatar-ring">
-              <img src="Foto de perfil.jpg" alt="Travessias" loading="lazy" decoding="async">
-            </div>
-            <div class="igp-info-col">
-              <div class="igp-user-row">
-                <span class="igp-username">travessiatranspessoal</span>
-                <span class="igp-dots">···</span>
-              </div>
-              <div class="igp-bio-name">Travessias | Migração, Saúde Mental e Espiritualidade</div>
-              <div class="igp-stats">
-                <div class="igp-stat"><div class="igp-stat-num">125</div><div class="igp-stat-lbl">posts</div></div>
-                <div class="igp-stat"><div class="igp-stat-num">871</div><div class="igp-stat-lbl">seguidores</div></div>
-                <div class="igp-stat"><div class="igp-stat-num">861</div><div class="igp-stat-lbl">seguindo</div></div>
-              </div>
-              <div class="igp-bio-type">Psicólogo</div>
-              <div class="igp-bio">
-                Sua Experiência Migratória como portal de Autoconhecimento<br>
-                🧶 Para mulheres em travessias<br>
-                @babi_gomide & @thanilepissarro
-              </div>
-              <a href="#" class="igp-bio-link">🔗 linktr.ee/travessiatranspessoal e mais 1</a>
-            </div>
+    <div class="info-progress">
+      <div class="info-label">Progresso de aprovação</div>
+      <div class="info-progress-bar">
+        <div class="info-progress-fill" id="infoFill" style="width:0%"></div>
+      </div>
+      <div class="info-progress-label">
+        <span id="infoCount">0 de 4 aprovados</span>
+        <button class="btn-clear" onclick="clearState()">↺ Limpar</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════ OVERVIEW ════════════════════════ -->
+<section class="overview-section" id="overview" style="position:relative;">
+  <div class="sticker-wrap" data-speed="0.25" style="top: -30px; right: -60px;">
+    <img src="../3.webp" class="sticker" style="width: 75px; animation-delay: 0.8s;">
+  </div>
+  <div class="sticker-wrap" data-speed="0.15" style="bottom: -40px; left: -60px;">
+    <img src="../1.webp" class="sticker" style="width: 110px; animation-delay: 1.2s;">
+  </div>
+  <div class="overview-split">
+
+    <!-- LEFT: IG Profile Replica -->
+    <div class="igp reveal">
+      <div class="igp-top">
+        <div class="igp-header-main">
+          
+          <div class="igp-avatar-ring">
+            <img src="Foto de perfil.jpg" alt="Travessias" loading="lazy" decoding="async">
           </div>
-          <div class="igp-highlights">
-            <div class="igp-hl" onclick="openProject('comece-aqui')">
-              <div class="igp-hl-circle" style="border:2px solid var(--purple)">
-                <img src="destaque 1.jpg" alt="Comece Aqui">
-              </div>
-              <div class="igp-hl-label">Comece Aqui</div>
+          
+          <div class="igp-info-col">
+            
+            <div class="igp-user-row">
+              <span class="igp-username">travessiastranspessoal</span>
+              <span class="igp-dots">···</span>
             </div>
-            <div class="igp-hl" onclick="openProject('agende')">
-              <div class="igp-hl-circle" style="border:2px solid var(--rose)">
-                <img src="destaque 2.jpg" alt="Agende">
-              </div>
-              <div class="igp-hl-label">Agende</div>
+            
+            <div class="igp-bio-name">
+              Travessias | Migração, Saúde Mental e Espiritualidade
             </div>
+            
+            <div class="igp-stats">
+              <div class="igp-stat"><div class="igp-stat-num">125</div><div class="igp-stat-lbl">posts</div></div>
+              <div class="igp-stat"><div class="igp-stat-num">871</div><div class="igp-stat-lbl">seguidores</div></div>
+              <div class="igp-stat"><div class="igp-stat-num">861</div><div class="igp-stat-lbl">seguindo</div></div>
+            </div>
+
+            <div class="igp-bio">
+              Sua Experiência Migratória como portal de Autoconhecimento<br>
+              🧶 Para mulheres em travessias<br>
+              <span style="color:#00376b">@babi_gomide</span> &amp; <span style="color:#00376b">@thanilepissarro</span>
+            </div>
+            <a href="#" class="igp-bio-link">🔗 linktr.ee/travessiastranspessoal e mais 1</a>
+            <div style="font-size:14px; margin-bottom:16px; display:flex; align-items:center; gap:6px;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8zm-2-12.5v9l7-4.5-7-4.5z" display="none"/><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z" display="none"/><path d="M12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2zm0 2a8 8 0 1 0 0 16 8 8 0 0 0 0-16zm0 2.5a5.5 5.5 0 1 1 0 11 5.5 5.5 0 0 1 0-11zm0 2a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7z" display="none"/><path d="M14.823 12.083c.012-.055.023-.11.033-.165.267-1.534-.367-3.1-1.64-3.915-1.272-.814-2.86-.789-4.102.064-1.242.853-1.96 2.367-1.84 3.9.12 1.533 1.075 2.846 2.457 3.376 1.382.53 2.934.145 3.945-.989l1.102.7c-1.365 1.523-3.46 2.036-5.32 1.325-1.861-.711-3.136-2.483-3.266-4.553-.13-2.07.828-4.103 2.44-5.21 1.612-1.107 3.737-1.14 5.385-.084 1.647 1.055 2.446 3.076 2.022 5.053l-1.22-.197z"/></svg>
+              <span>travessiastranspessoal</span>
+            </div>
+            
+            <div class="igp-followed">
+              <div class="igp-followed-pics">
+                <img src="duasmaos.webp" alt="dduasmaos" onerror="this.style.cssText='background:#a0c0d0;border-radius:50%'" loading="lazy" decoding="async">
+                <img src="tthacy.webp" alt="tthacy" onerror="this.style.cssText='background:#d0a0c0;border-radius:50%'" loading="lazy" decoding="async">
+              </div>
+              Seguido(a) por <strong>dduasmaos</strong> e <strong>tthacy</strong>
+            </div>
+
+            <div class="igp-actions">
+              <button class="igp-btn">Seguindo ▾</button>
+              <button class="igp-btn">Enviar mensagem</button>
+              <button class="igp-btn-add">👤⁺</button>
+            </div>
+
           </div>
         </div>
-        <div class="igp-tabs">
-          <div class="igp-tab active">
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="1" width="7" height="7" rx="1"/><rect x="10" y="1" width="7" height="7" rx="1"/><rect x="1" y="10" width="7" height="7" rx="1"/><rect x="10" y="10" width="7" height="7" rx="1"/></svg>
+
+        <div class="igp-highlights">
+          <div class="igp-hl" style="cursor:pointer" onclick="openProject('comece-aqui')">
+            <div class="igp-hl-circle" style="border:2px solid var(--purple)">
+              <img src="destaque 1.jpg" alt="Comece Aqui" onerror="this.parentNode.textContent='🌱'">
+            </div>
+            <div class="igp-hl-label">Comece Aqui</div>
           </div>
-        </div>
-        <div class="igp-grid">
-          <div class="igp-grid-item" onclick="openLightbox('1')">
-            <img src="Posts/WebP/Post 1 - 1.webp" alt="Post 1">
-            <span class="grid-num">01</span>
-          </div>
-          <div class="igp-grid-item" onclick="openLightbox('2')">
-            <img src="Posts/WebP/Post 2.webp" alt="Post 2">
-            <span class="grid-num">02</span>
-          </div>
-          <div class="igp-grid-item" onclick="openLightbox('3')">
-            <img src="Posts/WebP/Post 3 - 1.webp" alt="Post 3">
-            <span class="grid-num">03</span>
-          </div>
-          <div class="igp-grid-item" onclick="openLightbox('4')">
-            <img src="Posts/WebP/Post 4 - 1.webp" alt="Post 4">
-            <span class="grid-num">04</span>
+          <div class="igp-hl" style="cursor:pointer" onclick="openProject('agende')">
+            <div class="igp-hl-circle" style="border:2px solid var(--rose)">
+              <img src="destaque 2.jpg" alt="Agende" onerror="this.parentNode.textContent='📅'">
+            </div>
+            <div class="igp-hl-label">Agende</div>
           </div>
         </div>
       </div>
-    </div>
 
+      <div class="igp-tabs">
+        <div class="igp-tab active">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        </div>
+        <div class="igp-tab">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M10 8l6 4-6 4V8z"/></svg>
+        </div>
+        <div class="igp-tab">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 2v6h6M21.5 22v-6h-6"/><path d="M22 11.5A10 10 0 0 0 3.2 7.2M2 12.5a10 10 0 0 0 18.8 4.3"/></svg>
+        </div>
+        <div class="igp-tab">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/></svg>
+        </div>
+      </div>
+
+      
+      <div class="igp-grid">
+        <div class="igp-grid-item" onclick="openLightbox('1')">
+          <img src="Posts/WebP/Post 1 - 1.webp" alt="Post 1" loading="lazy" decoding="async">
+          <span class="grid-num">01</span>
+        </div>
+        <div class="igp-grid-item" onclick="openLightbox('2')">
+          <img src="Posts/WebP/Post 2.webp" alt="Post 2" loading="lazy" decoding="async">
+          <span class="grid-num">02</span>
+        </div>
+        <div class="igp-grid-item" onclick="openLightbox('3')">
+          <img src="Posts/WebP/Post 3 - 1.webp" alt="Post 3" loading="lazy" decoding="async">
+          <span class="grid-num">03</span>
+        </div>
+        <div class="igp-grid-item" onclick="openLightbox('4')">
+          <img src="Posts/WebP/Post 4 - 1.webp" alt="Post 4" loading="lazy" decoding="async">
+          <span class="grid-num">04</span>
+        </div>
+      </div>
+    
+    </div>
   </div>
 </section>
 
@@ -242,7 +316,7 @@
 <div class="card-item"><div class="card-item-num">Card 3</div>No Encontro com outras pessoas, culturas e visões de mundo…</div>
 <div class="card-item"><div class="card-item-num">Card 4</div>No Encontro com algo além do ego, com aquilo que dá sentido à vida:<br>a Espiritualidade</div>
 <div class="card-item"><div class="card-item-num">Card 5</div>Do Encontro da Psicologia Transpessoal com a Intercultural surge uma abordagem que amplia o olhar sobre a pessoa que migra.<br><br>Não apenas como alguém que passa por transformações na forma como pensa, sente e se comporta diante da mudança do seu contexto cultural…</div>
-<div class="card-item"><div class="card-item-num">Card 6</div>…mas como alguém que atravessa questões existential profundas de sentido, pertencimento, conexão e transcendência.<br><br>A espiritualidade*, quando integrada no processo terapêutico como um aspecto fundamental da experiência humana, promove a expansão da consciência e o encontro consigo mesma, com algo superior e com tudo e todos ao seu redor.<br><br>*Espiritualidade ≠ Religiosidade</div>
+<div class="card-item"><div class="card-item-num">Card 6</div>…mas como alguém que atravessa questões existenciais profundas de sentido, pertencimento, conexão e transcendência.<br><br>A espiritualidade*, quando integrada no processo terapêutico como um aspecto fundamental da experiência humana, promove a expansão da consciência e o encontro consigo mesma, com algo superior e com tudo e todos ao seu redor.<br><br>*Espiritualidade ≠ Religiosidade</div>
 <div class="card-item"><div class="card-item-num">Card 7</div>Recursos técnicos como a integração simbólica de sonhos, mindfulness e desenho e escrita terapêutica são algumas das ferramentas aplicadas na Psicologia Transpessoal para facilitar a expressão daquilo que, muitas vezes, as palavras não alcançam<br><br>Criatividade + Intuição = Mergulhos profundos</div>
 <div class="card-item"><div class="card-item-num">Card 8</div>Se fez sentido pra você, compartilhe com aquela amiga que transforma cada encontro em travessia &lt;3</div>
 </div>
@@ -298,21 +372,21 @@
     <div class="post-panel reveal" style="transition-delay:.1s">
       <div class="post-head">
         <div class="post-eyebrow">
-          <span id="eyebrow-2">Card único</span>
-          <span class="funnel-badge fb-topo">Meio de funil</span>
+          <span id="eyebrow-2">Carrossel</span>
+          <span class="funnel-badge fb-topo">Topo de funil</span>
         </div>
         <h3 class="post-title">14/05 — <em>Prova Social</em></h3>
         <div class="sb sb-none" id="badge-2"><span class="sbp"></span>Aguardando</div>
       </div>
 
-      <div class="blk-label">Texto do Card</div>
+      <div class="blk-label">Cards do carrossel</div>
       <div class="cards-list">
-        <div class="card-item">“Sou grata por esse encontro… me fez olhar para lugares que eu nem sabia que existiam.”</div>
-      </div>
+<div class="card-item"><div class="card-item-num">Card único</div>O que a Comunidade Travessias está falando:</div>
+</div>
 
       <div class="blk-label">✦ Legenda</div>
       <div class="caption-blk">
-<span class="handle">travessias</span> Compartilhar esses retornos é uma forma de honrar a confiança de cada pessoa que escolhe fazer essa travessia comigo. 🤍
+<span class="handle">travessias</span> Os feedbacks de vocês são muito significativos para nós, porque eles mostram exatamente o que acontece quando decidimos não atravessar sozinhas.<br><br>Demonstram justamente o que tanto acreditamos: a força da experiência compartilhada.<br><br>Porque, às vezes, o que mais precisamos é perceber que, aquilo que sentimos, também existe no outro.<br>Com amor,<br>Bárbara e Thanile
 </div>
 
     </div>
@@ -335,8 +409,8 @@
 <section class="post-section" id="sec-3" style="position:relative;">
   <div class="post-split">
       <div class="reveal">
-        <div class="post-num-badge"><div class="pnb-dot">3</div> 21/05 — Autoral</div>
-        <a href="https://drive.google.com/drive/folders/170X7r0i3r0o_9YlV5aE-W0U8zR8Q-zYI?usp=drive_link" target="_blank" class="download-post-btn">
+        <div class="post-num-badge"><div class="pnb-dot">3</div> 19/05 — Educacional</div>
+        <a href="https://drive.google.com/drive/folders/19P9KC29PdlG_fgGVVyfXBTFyEQWHY4rm?usp=drive_link" target="_blank" class="download-post-btn">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Baixar Post
         </a>
         <div class="ig-phone">
@@ -351,10 +425,10 @@
 <div class="ig-slide"><img src="Posts/WebP/Post 3 - 2.webp" loading="lazy" decoding="async"></div>
 <div class="ig-slide"><img src="Posts/WebP/Post 3 - 3.webp" loading="lazy" decoding="async"></div>
 <div class="ig-slide"><img src="Posts/WebP/Post 3 - 4.webp" loading="lazy" decoding="async"></div>
-            </div>
+<div class="ig-slide"><img src="Posts/WebP/Post 3 - 5.webp" loading="lazy" decoding="async"></div>
+<div class="ig-slide"><img src="Posts/WebP/Post 3 - 6.webp" loading="lazy" decoding="async"></div>
+          </div>
             <div class="ig-dots" id="idots-3"></div>
-            <button class="ig-arrow prev" onclick="igSlide('3', -1)">‹</button>
-            <button class="ig-arrow next" onclick="igSlide('3', 1)">›</button>
           </div>
           <div class="ig-foot">
             <p class="ig-cap"><strong>travessias</strong> Existir parece simples, mas, para muita gente, nunca foi…</p>
@@ -364,24 +438,26 @@
       <div class="post-panel reveal" style="transition-delay:.1s">
         <div class="post-head">
           <div class="post-eyebrow">
-            <span>Carrossel</span>
+            <span>Card único · Manifesto</span>
             <span class="funnel-badge fb-topo">Topo de funil</span>
           </div>
-          <h3 class="post-title">21/05 — <em>Autoral</em></h3>
+          <h3 class="post-title">19/05 — <em>Educacional</em></h3>
           <div class="sb sb-none" id="badge-3"><span class="sbp"></span>Aguardando</div>
         </div>
 
-        <div class="blk-label">Cards do Carrossel</div>
-        <div class="cards-list">
-          <div class="card-item"><div class="card-item-num">Card 1</div>O Encontro é um Atravessamento</div>
-          <div class="card-item"><div class="card-item-num">Card 2</div>Não se cruza o oceano sem se molhar. Não se encontra o outro sem se deixar tocar.</div>
-          <div class="card-item"><div class="card-item-num">Card 3</div>Toda travessia é, no fundo, uma busca por um porto seguro dentro de si.</div>
-          <div class="card-item"><div class="card-item-num">Card 4</div>A clínica é o lugar onde bússolas são recalibradas.</div>
-        </div>
+        <div class="blk-label">Cards do carrossel</div>
+      <div class="cards-list">
+<div class="card-item"><div class="card-item-num">Card 1</div>“Entre mundos: nem daqui, nem de lá.”<br>E o que a psicologia transpessoal diz sobre esse lugar…</div>
+<div class="card-item"><div class="card-item-num">Card 2</div>Os antropólogos o chamam de "entre-lugar", o espaço de quem pertence a dois ou mais mundos, mas não é completamente de nenhum.</div>
+<div class="card-item"><div class="card-item-num">Card 3</div>Por vezes, pode ser desconfortável, mas, por outro lado, nos dá acesso a um dos lugares mais férteis para saber quem você é de verdade.</div>
+<div class="card-item"><div class="card-item-num">Card 4</div>A Psicologia Transpessoal entende esse espaço como um portal. Ela parte de uma premissa simples: você não é só sua história pessoal, mas é também seus ancestrais, sua cultura, seus sonhos, o que ainda não foi vivido…</div>
+<div class="card-item"><div class="card-item-num">Card 5</div>Quando você migra, todas essas camadas se movem ao mesmo tempo. Não só a parte racional, a que organiza documentos e aprende o idioma. As camadas mais profundas também…</div>
+<div class="card-item"><div class="card-item-num">Card 6</div>O Travessias trabalha nos pensamentos que permeiam sua mente, nas tensões que se manifestam no seu corpo, nos símbolos que surgem dos seus sonhos. Naquilo que, muitas vezes, não se explica com palavras, mas que precisa ser visto e acolhido.</div>
+</div>
 
         <div class="blk-label">✦ Legenda</div>
         <div class="caption-blk">
-<span class="handle">travessias</span> Existir parece simples, mas, para muita gente, nunca foi. Desde cedo, a gente aprende a se ajustar: ao que esperam, ao que cabe, ao que é mais fácil de ser aceito. E, sem perceber, vai se afastando do que sente, do que pensa, do que verdadeiramente se é… Por isso, quando eu falo sobre psicoterapia, não é sobre "se tornar alguém melhor", mas encontrar o que faz sentido para você, no seu tempo. A psicologia que eu acredito e trabalho começa aí: na possibilidade de existir, com todas as nuances que isso envolve.
+<span class="handle">travessias</span> Quando você atravessa países, culturas e versões de si mesma, não é só o pensamento que precisa de espaço, o corpo sente, os sonhos se movem, as emoções ganham outras camadas.<br>Por isso, no Travessias, integramos ao nosso trabalho, ferramentas que ajudam a acessar dimensões mais profundas com cuidado e responsabilidade:<br>a escuta dos sonhos;<br>as práticas de presença, como a meditação;<br>o uso de símbolos como forma de linguagem do que ainda não tem nome;<br>além de espaços de troca onde o vivido pode ser reconhecido no outro.<br>Assim, criamos condições para que você mesma consiga se escutar com mais profundidade e, a partir disso, construir um caminho que faça sentido de verdade para quem você está se tornando.<br>Porque tem coisas que só se revelam quando a gente aprende a sustentar o entre-lugar, sem pressa de sair dele.<br>Com amor,<br>Bárbara e Thanile
 </div>
 
     </div>
@@ -404,25 +480,29 @@
 <section class="post-section" id="sec-4" style="position:relative;">
   <div class="post-split">
     <div class="reveal">
-      <div class="post-num-badge"><div class="pnb-dot">4</div> 28/05 — Chamada Direta</div>
-      <a href="https://drive.google.com/drive/folders/15X3r0i3r0o_9YlV5aE-W0U8zR8Q-zYI?usp=drive_link" target="_blank" class="download-post-btn">
+      <div class="post-num-badge"><div class="pnb-dot">4</div> 28/05 — Divulgação</div>
+      <a href="https://drive.google.com/drive/folders/1G0hAMnaPI1dMtSlDrj7nytiKFA1N6qwQ?usp=drive_link" target="_blank" class="download-post-btn">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Baixar Post
       </a>
       <div class="ig-phone">
         <div class="ig-bar">
           <div class="ig-ava"><img src="Foto de perfil.jpg" alt="GL" loading="lazy" decoding="async"></div>
-          <div><div class="ig-handle">travessias</div></div>
-          <div class="ig-type">Carrossel</div>
+          <div><div class="ig-handle">travessias</div>
+<div class="ig-type" id="type-4">Carrossel</div>
+</div>
         </div>
         <div class="ig-carousel" style="cursor:pointer" onclick="openLightbox('4')">
           <div class="ig-track" id="itrack-4">
 <div class="ig-slide"><img src="Posts/WebP/Post 4 - 1.webp" loading="lazy" decoding="async"></div>
 <div class="ig-slide"><img src="Posts/WebP/Post 4 - 2.webp" loading="lazy" decoding="async"></div>
 <div class="ig-slide"><img src="Posts/WebP/Post 4 - 3.webp" loading="lazy" decoding="async"></div>
+<div class="ig-slide"><img src="Posts/WebP/Post 4 - 4.webp" loading="lazy" decoding="async"></div>
+<div class="ig-slide"><img src="Posts/WebP/Post 4 - 5.webp" loading="lazy" decoding="async"></div>
+<div class="ig-slide"><img src="Posts/WebP/Post 4 - 6.webp" loading="lazy" decoding="async"></div>
+<div class="ig-slide"><img src="Posts/WebP/Post 4 - 7.webp" loading="lazy" decoding="async"></div>
+<div class="ig-slide"><img src="Posts/WebP/Post 4 - 8.webp" loading="lazy" decoding="async"></div>
           </div>
           <div class="ig-dots" id="idots-4"></div>
-          <button class="ig-arrow prev" onclick="igSlide('4', -1)">‹</button>
-          <button class="ig-arrow next" onclick="igSlide('4', 1)">›</button>
         </div>
         <div class="ig-foot">
           <p class="ig-cap"><strong>travessias</strong> Meu trabalho acontece de forma online, então consigo atender pessoas de qualquer lugar, do Brasil ou de fora.</p>
@@ -435,20 +515,25 @@
           <span>Carrossel</span>
           <span class="funnel-badge fb-fundo">Fundo de funil</span>
         </div>
-        <h3 class="post-title">28/05 — <em>Chamada Direta</em></h3>
+        <h3 class="post-title">28/05 — <em>Jornada</em></h3>
         <div class="sb sb-none" id="badge-4"><span class="sbp"></span>Aguardando</div>
       </div>
 
-      <div class="blk-label">Cards do Carrossel</div>
+      <div class="blk-label">Cards do carrossel</div>
       <div class="cards-list">
-        <div class="card-item"><div class="card-item-num">Card 1</div>Como ser atendida por nós?</div>
-        <div class="card-item"><div class="card-item-num">Card 2</div>Atendimento online para brasileiros em qualquer lugar do mundo.</div>
-        <div class="card-item"><div class="card-item-num">Card 3</div>Clique no link da bio e agende sua primeira conversa.</div>
-      </div>
+<div class="card-item"><div class="card-item-num">Card 1</div>Chegou a hora da nossa primeira Jornada Travessias de 2026.<br>Tem dúvidas sobre o processo? Aqui, tudo que você precisa saber!<br>Inscreva-se até 08/05</div>
+<div class="card-item"><div class="card-item-num">Card 2</div>As inscrições abrem apenas 2x ao ano (e, não, isso não é papo de marketing). O processo é intenso, individual e altamente personalizado conduzido por duas terapeutas especialistas em Psicologia Transpessoal e Intercultural.</div>
+<div class="card-item"><div class="card-item-num">Card 3</div>A Jornada acontece em 8 encontros, online e ao vivo, para você que está em qualquer parte desse mundo. Ou seja, nada de aula gravada!</div>
+<div class="card-item"><div class="card-item-num">Card 4</div>Então, saiba que a jornada é para você que busca:<br>mais clareza sobre onde está e para onde deseja ir<br>novas perspectivas para questões que esteja enfrentando<br>autoconhecimento para além do racional, integrando emoção, intuição e sensação<br>recursos práticos de reflexão e integração, que poderão ser usados mesmo após o fim da nossa jornada<br>uma sensação mais estruturada e confiante de si mesma</div>
+<div class="card-item"><div class="card-item-num">Card 5</div>Quem já participou deixou um recado para você:<br><br>Uma jornada deliciosa! Fui guiada a um encontro comigo mesma num momento chave da vida. A cada semana, as atividades me despertavam uma profundidade emocional que reverberava até o encontro seguinte - um misto de completude e curiosidade. Quando chegou ao fim, desejei que a jornada tivesse sido mais longa porém, passados alguns dias, entendi que 8 encontros deixam um gostinho de “quero mais”. Fica aqui o meu desejo de repetir no futuro e, por ora, vou assimilar toda a evolução ocorrida nesses dois meses. Termino essa travessia grata, poética e potente. Até breve. Marcella</div>
+<div class="card-item"><div class="card-item-num">Card 6</div>Para essa experiência ser adequada à sua travessia, ferramentas que acessam camadas profundas são utilizadas, como práticas expressivas manuais, thetahealing®, escrita intuitiva, tarot terapêutico, integração simbólica de sonhos, oráculos e muito mais!</div>
+<div class="card-item"><div class="card-item-num">Card 7</div>Com a Jornada Travessias, você constrói uma relação mais consciente com o que está vivendo e, a partir disso, faz escolhas mais alinhadas com o que deseja manifestar no mundo.</div>
+<div class="card-item"><div class="card-item-num">Card 8</div>Inscrições abertas para a Jornada Travessias até 08 de Maio</div>
+</div>
 
       <div class="blk-label">✦ Legenda</div>
       <div class="caption-blk">
-<span class="handle">travessias</span> Meu trabalho acontece de forma online, então consigo atender pessoas de qualquer lugar, do Brasil ou de fora. O primeiro passo é simples: você me chama, a gente conversa e vê se faz sentido pra você e pra mim. A psicoterapia começa, antes de tudo, na possibilidade do encontro. 🤍
+<span class="handle">travessias</span> Inscrições abertas para a Jornada Travessias até 08 de Maio<br><br>Ainda tem dúvidas? Passe para o lado e entenda mais ou fique à vontade para nos enviar uma mensagem!<br><br>Com amor,<br><br>Bárbara e Thanile
 </div>
 
     </div>
@@ -466,61 +551,165 @@
   </div>
 </section>
 
+</div>
+</section>
+
+<!-- ══ POST 6 ══ -->
+
+
+
+
+<!-- ══ POST 7 (DESTAQUE) ══ -->
+
+
+<!-- ══ POST 8 (DESTAQUE) ══ -->
+
   </div>
 </section>
 
 <!-- ════════════════════════ FOOTER ════════════════════════ -->
-<footer class="main-footer">
+<footer class="footer">
+  <div class="footer-bg"></div>
+  <div class="footer-grain"></div>
   <div class="footer-content">
-    <img src="logos/logo.png" alt="Travessias" class="footer-logo">
-    <div class="footer-divider"></div>
-    <p class="footer-tagline">Curadoria e Estratégia de Conteúdo</p>
-    <div class="footer-copyright">Desenvolvido por <strong>Duas Mãos</strong></div>
+    <p class="footer-title">Obri<em>gada!</em></p>
+    <div class="footer-div"></div>
+    <p class="footer-body">Fique à vontade para enviar qualquer feedback adicional.<br>Isso nos ajuda a evoluir cada detalhe do seu projeto.</p>
+    <div class="footer-summary">
+      <div class="fs-item"><div class="fs-num green" id="f-approved">0</div><div class="fs-lbl">Aprovados</div></div>
+      <div class="fs-item"><div class="fs-num yellow" id="f-pending">6</div><div class="fs-lbl">Pendentes</div></div>
+      <div class="fs-item"><div class="fs-num wine" id="f-rejected">0</div><div class="fs-lbl">Reprovados</div></div>
+    </div>
+    <p class="footer-sig" style="margin-top:36px">Criado com cuidado pela <strong>Duas Mãos.</strong></p>
   </div>
 </footer>
 
+<div id="toast"><span class="ti" id="ti"></span><span class="tm" id="tm"></span></div>
+
+
+
+
 <!-- ════════════════════════ LIGHTBOX ════════════════════════ -->
-<div id="lightbox" class="lightbox" onclick="closeLightbox()">
-  <span class="lightbox-close">&times;</span>
-  <div class="lightbox-content" onclick="event.stopPropagation()">
-    <img id="lightbox-img" src="" alt="Lightbox">
-    <div class="lightbox-nav">
-       <button class="ln-btn" onclick="prevLightbox()">‹</button>
-       <button class="ln-btn" onclick="nextLightbox()">›</button>
+<div id="lightbox">
+  <div class="lb-backdrop" onclick="closeLightbox()"></div>
+  <div class="lb-split">
+    <div class="lb-left">
+      <div class="lb-slice-container">
+        <div class="lb-track" id="lbTrack"></div>
+      </div>
+      <button class="lb-left-prev" id="lbPrev" onclick="lbSlide(-1)">‹</button>
+      <button class="lb-left-next" id="lbNext" onclick="lbSlide(1)">›</button>
+      <div class="lb-dots" id="lbDots"></div>
     </div>
-  </div>
-</div>
-
-<!-- ════════════════════════ MODALS ════════════════════════ -->
-<div id="reviewModal" class="modal-overlay" onclick="closeReviewModal()">
-  <div class="modal-card" onclick="event.stopPropagation()">
-    <div class="modal-header">
-      <h3>Solicitar Revisão</h3>
-      <button class="modal-close" onclick="closeReviewModal()">&times;</button>
-    </div>
-    <div class="modal-body">
-      <p>Descreva as alterações necessárias para o conteúdo <strong id="reviewPostId">#0</strong>:</p>
-      <textarea id="reviewText" placeholder="Ex: Ajustar o texto do segundo card..."></textarea>
-      <button class="abtn btn-ap" style="width:100%; margin-top:16px;" onclick="submitReview()">Enviar Solicitação</button>
-    </div>
-  </div>
-</div>
-
-<div id="commentsModal" class="modal-overlay" onclick="closeCommentsModal()">
-  <div class="modal-card" onclick="event.stopPropagation()">
-    <div class="modal-header">
-      <h3>Comentários</h3>
-      <button class="modal-close" onclick="closeCommentsModal()">&times;</button>
-    </div>
-    <div class="modal-body">
-      <div id="commentsList" class="comments-list"></div>
-      <div class="comment-input-wrap">
-        <textarea id="commentText" placeholder="Escreva um comentário..."></textarea>
-        <button class="abtn btn-ap" style="width:100%; margin-top:12px;" onclick="submitComment()">Comentar</button>
+    <div class="lb-right">
+      <div class="lb-rh">
+        <div class="lb-rh-ava"><img src="Foto de perfil.jpg" alt="Avatar"></div>
+        <div class="lb-rh-name">travessiaspsi</div>
+        <button class="lb-rh-close" onclick="closeLightbox()">✕</button>
+      </div>
+      <div class="lb-rbody">
+        <div class="lb-rcaption" id="lbCaption"></div>
+        <div class="lb-rcards" id="lbCards"></div>
+        <div class="lb-rdiv"></div>
+        <div class="lb-rfeedback-lbl">Feedback do Cliente</div>
+        <div id="lbCommentsList"></div>
+      </div>
+      <div class="lb-raction-row" id="lbActionRow">
+        <!-- populated by JS -->
+      </div>
+      <div class="lb-rcomment-input">
+        <textarea id="lbTextarea" placeholder="Escreva um comentário..."></textarea>
+        <button class="lb-rpost-btn" onclick="lbSendComment()">Publicar</button>
       </div>
     </div>
   </div>
 </div>
 
+
+<!-- REVIEW MODAL -->
+<div id="reviewModal" class="modal-overlay">
+  <div class="modal-card">
+    <div class="modal-header">
+      <h3>Solicitar Revisão</h3>
+      <button class="modal-close" onclick="closeReviewModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <p>O que precisa ser ajustado neste conteúdo?</p>
+      <textarea id="reviewTextarea" rows="4" placeholder="Descreva aqui os pontos que precisam de atenção..."></textarea>
+    </div>
+    <div class="modal-footer">
+      <button class="modal-btn btn-sec" onclick="closeReviewModal()">Cancelar</button>
+      <button class="modal-btn btn-pri" id="confirmReviewBtn">Confirmar Revisão</button>
+    </div>
+  </div>
+</div>
+
+<!-- COMMENTS HISTORY MODAL -->
+<div id="commentsModal" class="modal-overlay">
+  <div class="modal-card">
+    <div class="modal-header">
+      <h3>Histórico de Comentários</h3>
+      <button class="modal-close" onclick="closeCommentsModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <div id="modalCommentsList" class="modal-comments-list">
+        <!-- Will be populated by JS -->
+      </div>
+      <div class="modal-input-area">
+        <textarea id="modalCommentInput" rows="2" placeholder="Adicione um novo comentário..."></textarea>
+        <button class="modal-btn btn-pri" id="modalSendCommentBtn">Enviar Comentário</button>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="modal-btn btn-sec" onclick="closeCommentsModal()">Fechar</button>
+    </div>
+  </div>
+</div>
+
+<!-- HIDDEN DATA PERSISTENCE -->
+<div id="hiddenCommentsData" style="display:none">
+  <div id="comments-1"></div>
+  <div id="comments-2"></div>
+  <div id="comments-3"></div>
+  <div id="comments-4"></div>
+  <div id="comments-5"></div>
+  <div id="comments-6"></div>
+  <div id="comments-7"></div>
+  <div id="comments-8"></div>
+</div>
+
+<!-- ═══════════════ PROJECT VIEWER ═══════════════ -->
+<div id="projectViewer">
+  <div class="pv-header">
+    <div class="pv-title-box">
+      <h2 id="pvTitle">Projects: Comece Aqui</h2>
+      <button class="pv-back" onclick="closeProject()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+      </button>
+    </div>
+  </div>
+  
+  <div class="pv-content" id="pvContent">
+    <!-- Will be populated by JS -->
+  </div>
+
+  <div class="pv-footer-back">
+    <div class="pv-content" style="padding-top:0; padding-bottom:100px;">
+      <button class="pv-back" onclick="closeProject()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+      </button>
+    </div>
+  </div>
+</div>
+
+
+
+<script defer src="script.js"></script>
 </body>
 </html>
