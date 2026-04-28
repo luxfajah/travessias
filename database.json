@@ -1,8 +1,8 @@
 {
   "statuses": {
     "1": "pending",
-    "2": "none",
-    "3": "none",
+    "2": "pending",
+    "3": "pending",
     "4": "none"
   },
   "comments": {
@@ -13,7 +13,9 @@
     "2": [
       "<div class=\"c-meta\"><strong>Travessias</strong> · 27/04/2026 22:12</div><div class=\"c-text\">gdgdsfg</div>"
     ],
-    "3": [],
+    "3": [
+      "<div class=\"c-meta\"><strong>Travessias</strong> · 27/04/2026 22:12</div><div class=\"c-text\">fsdfsfsdf</div>"
+    ],
     "4": []
   }
 }
