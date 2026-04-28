@@ -1,20 +1,4 @@
 {
-  "statuses": {
-    "1": "pending",
-    "2": "rejected",
-    "3": "approved",
-    "4": "pending"
-  },
-  "comments": {
-    "1": [
-      "<div class=\"c-meta\"><strong>Travessias</strong> · 27/04/2026 22:20</div><div class=\"c-text\">dssdsd</div>",
-      "<div class=\"c-meta\"><strong>Travessias</strong> · 27/04/2026 22:20</div><div class=\"c-text\">sdsdsdsd</div>"
-    ],
-    "2": [],
-    "3": [],
-    "4": [
-      "<div class=\"c-meta\"><strong>Travessias</strong> · 27/04/2026 22:20</div><div class=\"c-text\">sdsdsdsd</div>",
-      "<div class=\"c-meta\"><strong>Travessias</strong> · 27/04/2026 22:20</div><div class=\"c-text\">sdsd</div>"
-    ]
-  }
+  "statuses": {},
+  "comments": {}
 }
