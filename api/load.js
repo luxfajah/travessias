@@ -1,28 +1,33 @@
 export default async function handler(req, res) {
   try {
+    const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
     const REPO_OWNER = 'luxfajah'; 
     const REPO_NAME = 'travessias'; 
     const FILE_PATH = 'database.json'; 
 
-    // Bate diretamente no raw do github para não pegar cache do Vercel/Next
-    // Passando um timestamp para forçar bypass total de cache do Github
-    const timestamp = new Date().getTime();
-    const url = `https://raw.githubusercontent.com/${REPO_OWNER}/${REPO_NAME}/main/${FILE_PATH}?t=${timestamp}`;
+    // Usamos a API de conteúdos para garantir que pegamos a versão mais fresca com o token
+    const url = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FILE_PATH}?t=${Date.now()}`;
     
     const response = await fetch(url, {
       headers: {
-        'Authorization': `Bearer ${process.env.GITHUB_TOKEN}`
+        'Authorization': `Bearer ${GITHUB_TOKEN}`,
+        'Accept': 'application/vnd.github.v3.raw+json', // .raw retorna o conteúdo direto
+        'Cache-Control': 'no-cache'
       }
     });
 
     if (!response.ok) {
-      if (response.status === 404) return res.status(200).json({}); // Retorna vazio caso o arquivo ainda não exista
-      throw new Error('Falha ao carregar');
+      if (response.status === 404) {
+        return res.status(200).json({ statuses: {}, comments: {} });
+      }
+      const errorText = await response.text();
+      throw new Error(`Load Error: ${response.status} ${errorText}`);
     }
 
     const data = await response.json();
     res.status(200).json(data);
   } catch (error) {
+    console.error('Load Error:', error);
     res.status(500).json({ error: error.message });
   }
 }
