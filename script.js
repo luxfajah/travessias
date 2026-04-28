@@ -1,11 +1,16 @@
 
   // Preloader removal
+  const startTime = Date.now();
   window.addEventListener('load', () => {
-    const preloader = document.getElementById('preloader');
-    if (preloader) {
-      preloader.classList.add('hidden');
-      setTimeout(() => preloader.remove(), 600); // Clean up DOM
-    }
+    const elapsed = Date.now() - startTime;
+    const remaining = Math.max(3000 - elapsed, 0);
+    setTimeout(() => {
+      const preloader = document.getElementById('preloader');
+      if (preloader) {
+        preloader.classList.add('hidden');
+        setTimeout(() => preloader.remove(), 600); // Clean up DOM
+      }
+    }, remaining);
   });
 
   // Optimized Parallax Effect
