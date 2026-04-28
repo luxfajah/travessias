@@ -8,7 +8,15 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,700;1,9..144,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
 
-  <link rel="stylesheet" href="style.css?v=2.1"/>
+  <link rel="stylesheet" href="style.css?v=2.2"/>
+  <style>
+    /* Critical CSS to prevent flash of content */
+    .preloader {
+      position: fixed; inset: 0; background: #FAF7F5; z-index: 100000;
+      display: flex; align-items: center; justify-content: center;
+      transition: opacity 0.6s, visibility 0.6s;
+    }
+  </style>
 </head>
 <body>
 <!-- Preloader -->
@@ -27,7 +35,7 @@
 <div class="hero-overlay"></div>
 <div class="hero-grain"></div>
 
-<script defer src="script.js"></script>
+<script src="script.js"></script>
 
   <section class="hero" id="heroSec">
     <div class="sticker-wrap" data-speed="0.15" style="top: 10%; left: 0%;">

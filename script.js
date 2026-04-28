@@ -1,19 +1,22 @@
 
-  // Preloader removal
-  const startTime = Date.now();
-  window.addEventListener('load', () => {
-    const elapsed = Date.now() - startTime;
-    const remaining = Math.max(3000 - elapsed, 0);
-    setTimeout(() => {
-      const preloader = document.getElementById('preloader');
-      if (preloader) {
-        preloader.classList.add('hidden');
-        setTimeout(() => preloader.remove(), 600); // Clean up DOM
-      }
-    }, remaining);
-  });
+// Preloader logic
+const PRELOADER_MIN_TIME = 3200; // Slightly more than 3s to be safe
+const pageStartTime = Date.now();
 
-  // Optimized Parallax Effect
+window.addEventListener('load', () => {
+  const elapsed = Date.now() - pageStartTime;
+  const remaining = Math.max(PRELOADER_MIN_TIME - elapsed, 0);
+  
+  setTimeout(() => {
+    const preloader = document.getElementById('preloader');
+    if (preloader) {
+      preloader.classList.add('hidden');
+      setTimeout(() => preloader.remove(), 800);
+    }
+  }, remaining);
+});
+
+// Optimized Parallax Effect
   const stickers = document.querySelectorAll('.sticker-wrap');
   let ticking = false;
   let lastScrolled = 0;
