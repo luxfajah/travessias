@@ -921,6 +921,8 @@
     .footer-bg {
       position:absolute; inset:0;
       background: url('logos/wallpaper.png') center center / cover no-repeat;
+      filter: saturate(.85) contrast(1.05) blur(8px);
+      transform: scale(1.05);
     }
     .footer-grain {
       position:absolute; inset:0; opacity:.04;
@@ -1290,9 +1292,15 @@
 /* ── Login Screen ──────────────────────────────────────── */
 .login-screen {
   position: fixed; inset: 0; z-index: 10000;
-  background: url('logos/wallpaper.png') center center / cover no-repeat;
   display: flex; align-items: center; justify-content: center;
   transition: opacity 0.5s, visibility 0.5s;
+  overflow: hidden;
+}
+.login-screen::before {
+  content: ""; position: absolute; inset: -5%;
+  background: url('logos/wallpaper.png') center center / cover no-repeat;
+  filter: saturate(.85) contrast(1.05) blur(8px);
+  z-index: -1;
 }
 .login-screen.hidden {
   opacity: 0; visibility: hidden; pointer-events: none;
@@ -1378,11 +1386,16 @@ body.locked {
 
 /* ── Preloader ────────────────────────────────────────── */
 .preloader {
-  position: fixed; inset: 0;
-  background: var(--bg);
-  z-index: 100000;
+  position: fixed; inset: 0; z-index: 100000;
   display: flex; align-items: center; justify-content: center;
   transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.6s;
+  overflow: hidden;
+}
+.preloader::before {
+  content: ""; position: absolute; inset: -5%;
+  background: url('logos/wallpaper.png') center center / cover no-repeat;
+  filter: saturate(.85) contrast(1.05) blur(8px);
+  z-index: -1;
 }
 .preloader.hidden {
   opacity: 0; visibility: hidden; pointer-events: none;
