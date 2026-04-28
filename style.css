@@ -926,9 +926,9 @@
     }
     .footer-bg {
       position:absolute; inset:0;
-      background: url('logos/wallpaper.png') center center / cover no-repeat;
-      filter: saturate(.85) contrast(1.05) blur(8px);
-      transform: scale(1.05);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      background: transparent;
       mask-image: linear-gradient(to bottom, transparent 0%, black 30%, black 100%);
       -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 30%, black 100%);
     }
