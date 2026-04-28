@@ -130,8 +130,8 @@
     .reveal.visible { opacity: 1; transform: translateY(0); }
 
     /* ─── OVERVIEW SPLIT ──────────────────────────── */
-    .overview-section {
-       max-width: 900px; margin: 0 auto;
+    .simulation-wrap {
+      flex: 1; max-width: 420px; width: 100%;
     }
 
     /* ─── MODALS ─────────────────────────────────────── */
@@ -271,12 +271,22 @@
       filter: drop-shadow(0 1px 3px rgba(0,0,0,.5));
     }
 
-    .info-container {
-      position: relative; padding: 120px 20px; z-index: 2;
-      min-height: 100vh; display: flex; align-items: center; justify-content: center;
+    .dashboard-section {
+      padding: 120px 20px;
+      max-width: 1300px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
     }
+    .dashboard-container {
+      display: flex;
+      gap: 60px;
+      align-items: flex-start;
+      justify-content: center;
+    }
+    
     .info-panel {
-      position: relative; width: 100%; max-width: 680px; margin: 0 auto;
+      position: relative; flex: 1; max-width: 580px;
       background: rgba(255, 255, 255, 0.95);
       backdrop-filter: blur(24px);
       -webkit-backdrop-filter: blur(24px);
@@ -561,7 +571,8 @@
 
       /* ── Overview Section ── */
       .overview-section { padding: 0 16px; }
-      .overview-split { flex-direction: column; gap: 24px; }
+      .dashboard-container { flex-direction: column; align-items: center; gap: 40px; }
+      .info-panel, .simulation-wrap { max-width: 100%; width: 100%; }
 
       /* ── IGP Profile Simulation Mobile ── */
       .igp-top { padding: 16px; }
