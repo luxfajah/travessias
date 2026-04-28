@@ -55,7 +55,7 @@
     .hero-bg {
       position: fixed; inset: 0;
       width: 100%; height: 100%;
-      background: url('logos/wallpaper.png') center center / cover no-repeat;
+      background: url('logos/wallpaper.webp') center center / cover no-repeat;
       z-index: 0;
       pointer-events: none;
       filter: saturate(.85) contrast(1.05) blur(3px);
@@ -1306,7 +1306,7 @@
 }
 .login-screen::before {
   content: ""; position: absolute; inset: -5%;
-  background: url('logos/wallpaper.png') center center / cover no-repeat;
+  background: url('logos/wallpaper.webp') center center / cover no-repeat;
   filter: saturate(.85) contrast(1.05) blur(8px);
   z-index: -1;
 }
@@ -1401,7 +1401,7 @@ body.locked {
 }
 .preloader::before {
   content: ""; position: absolute; inset: -5%;
-  background: url('logos/wallpaper.png') center center / cover no-repeat;
+  background: url('logos/wallpaper.webp') center center / cover no-repeat;
   filter: saturate(.85) contrast(1.05) blur(8px);
   z-index: -1;
 }
@@ -1427,16 +1427,15 @@ body.locked {
   position: relative;
 }
 .loader-bar {
-  position: absolute; inset: 0;
+  position: absolute; left: 0; top: 0; bottom: 0;
   background: var(--rose);
-  width: 50%;
+  width: 0%;
   border-radius: 4px;
-  animation: loaderAnim 1.5s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+  animation: loadProgress 3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
-@keyframes loaderAnim {
-  0% { left: -50%; width: 30%; }
-  50% { left: 25%; width: 50%; }
-  100% { left: 100%; width: 30%; }
+@keyframes loadProgress {
+  0% { width: 0%; }
+  100% { width: 100%; }
 }
 @keyframes loaderFadeIn {
   from { opacity: 0; transform: translateY(10px); }
