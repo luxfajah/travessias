@@ -1,18 +1,1 @@
-{
-  "statuses": {
-    "1": "pending",
-    "2": "none",
-    "3": "none",
-    "4": "none"
-  },
-  "comments": {
-    "1": [
-      "<div class=\"c-meta\"><strong>Travessias</strong> · 27/04/2026 22:10</div><div class=\"c-text\">dsgfsdf</div>",
-      "<div class=\"c-meta\"><strong>Travessias</strong> · 27/04/2026 22:10</div><div class=\"c-text\">sdfsdf</div>",
-      "<div class=\"c-meta\"><strong>Travessias</strong> · 27/04/2026 22:13</div><div class=\"c-text\">sdfsdfsdfs</div>"
-    ],
-    "2": [],
-    "3": [],
-    "4": []
-  }
-}
+{}
