@@ -2,8 +2,8 @@
   "statuses": {
     "1": "pending",
     "2": "pending",
-    "3": "none",
-    "4": "none"
+    "3": "pending",
+    "4": "pending"
   },
   "comments": {
     "1": [
@@ -15,6 +15,8 @@
     "3": [
       "<div class=\"c-meta\"><strong>Travessias</strong> · 29/04/2026 15:30</div><div class=\"c-text\">Gostamos de todas as imagens!!! Sentimos falta da nossa fonte em itálico. Na primeira imagem, o texto embaixo pode aparecer de outra forma que não no bilhete, porque já tem outros usos mais adequados pra esse bilhete nos slides seguintes. Segundo e terceiro slide estão ótimos, só gostaríamos que utilizasse aquela fonte em itálico. Quando for utilizar o bilhete, como no quarto slide, não colocar textura de papel amassado no fundo para não ficar papel sobre papel. O asterisco também parece estar sobrando na imagem, melhor deixar ela mais clean. Quando o elemento não estiver comunicando alguma coisa, melhor tirar. Trocar a cor vermelha utilizada nos textos por uma cor menos amarronzada e mais magenta, aquela da nossa paleta. Pode retirar também o brilho em forma de diamante. Talvez utilizar mais o texto com aquele espaçamento estilo \"justificado\". O último slide está muito bom!! Só retirar o fundo de papel amassado e mudar a cor da fonte. A assinatura do travessias que aparece em algumas imagens, pode deixar em branco mesmo, não gostamos muito dela cor de rosa. Em alguns momentos talvez pode deixar ela com um pouco de transparência, mas evitar colocar cor diferente nela.</div>"
     ],
-    "4": []
+    "4": [
+      "<div class=\"c-meta\"><strong>Travessias</strong> · 29/04/2026 15:47</div><div class=\"c-text\">Slide 1: Tirar o papel estilo bilhete, tirar o papel amassado do fundo, colocar a palavra \"primeira\" em caixa alta, usar a nossa fonte em itálico em alguma palavra de destaque como \"Jornada Travessias\", tirar o ponto final depois de \"2026\" e não usar o vermelho, preferir o magenta.\n\nSlide 2: Achamos que pode diminuir um pouco a fonte do texto de apoio\n\nSlide 3: Talvez utilizar aquele parágrafo com espaçamentos estilo \"texto justificado\" e a fonte em itálico. A foto deste computador mostra um encontro e a Jornada Travessias é individual, então precisa mudar essa imagem.\n\nSlide 4: Colocar o bilhete alinhado horizontalmente e mudar a cor da fonte. \n\nSlide 5: tirar a textura de papel amassado\n\nSlide 6: Alinhar o bilhete horizontalmente, tirar o fundo de papel amassado e testar a escrita em preto com maior espaçamento entre as linhas.\n\nSlide 7: Utilizar o fundo com cor sólida e sem a textura de papel amassado.\n\nSlide 8: Não remover o fundo das nossas fotos, pode usar a foto original.</div>"
+    ]
   }
 }
