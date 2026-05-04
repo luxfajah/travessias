@@ -715,6 +715,7 @@
     .fb-topo  { background: #EDE9FE; color: #5B21B6; border: 1px solid #C4B5FD; }
     .fb-meio  { background: #FEF3C7; color: #92400E; border: 1px solid #FDE68A; }
     .fb-fundo { background: #D1FAE5; color: #065F46; border: 1px solid #6EE7B7; }
+    .v2-badge { background: #FF7050; color: #fff; font-size: 8px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; padding: 2px 8px; border-radius: 100px; margin-left: 8px; vertical-align: middle; }
     .post-title { font-family: 'Canela', 'Fraunces', serif; font-size: 28px; font-weight: 300; color: var(--text); display: inline-block; letter-spacing: -0.02em; }
     .post-title em { font-family: 'Canela', 'Fraunces', serif; font-style: italic; color: var(--rose); font-weight: 300; display: inline-block; margin-left: 6px; }
 
