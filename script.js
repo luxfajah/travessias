@@ -423,7 +423,7 @@ window.addEventListener('load', () => {
 
   const lbSources = {
     '1': ['Posts/WebP/Post 1 - 1.webp', 'Posts/WebP/Post 1 - 2.webp', 'Posts/WebP/Post 1 - 3.webp', 'Posts/WebP/Post 1 - 4.webp', 'Posts/WebP/Post 1 - 5.webp', 'Posts/WebP/Post 1 - 6.webp', 'Posts/WebP/Post 1 - 7.webp', 'Posts/WebP/Post 1 - 8.webp'],
-    '2': ['Posts/WebP/Post 2 - 1.webp', 'Posts/WebP/Post 2 - 2.webp', 'Posts/WebP/Post 2 - 3.webp', 'Posts/WebP/Post 2 - 4.webp'],
+    '2': ['Posts/WebP/Post 2 - 1.webp', 'Posts/WebP/Post 2 - 2.webp', 'Posts/WebP/Post 2 - 3.webp', 'Posts/WebP/Post 2 - 4.webp', 'Posts/WebP/Post 2 - 5.webp'],
     '3': ['Posts/WebP/Post 3 - 1.webp', 'Posts/WebP/Post 3 - 2.webp', 'Posts/WebP/Post 3 - 3.webp', 'Posts/WebP/Post 3 - 4.webp', 'Posts/WebP/Post 3 - 5.webp', 'Posts/WebP/Post 3 - 6.webp'],
     '4': ['Posts/WebP/Post 4 - 1.webp', 'Posts/WebP/Post 4 - 2.webp', 'Posts/WebP/Post 4 - 3.webp', 'Posts/WebP/Post 4 - 4.webp', 'Posts/WebP/Post 4 - 5.webp', 'Posts/WebP/Post 4 - 6.webp', 'Posts/WebP/Post 4 - 7.webp', 'Posts/WebP/Post 4 - 8.webp'],
     'comece-aqui': ['destaque 1.jpg'],
@@ -450,7 +450,8 @@ window.addEventListener('load', () => {
         'O que a Comunidade Travessias está falando:',
         '“Uma jornada deliciosa! Fui guiada a um encontro comigo mesma num momento chave da vida.”',
         '“Termino essa travessia grata, poética e potente. Até breve.”',
-        '“A cada semana, as atividades me despertavam uma profundidade emocional que reverberava até o encontro seguinte.”'
+        '“A cada semana, as atividades me despertavam uma profundidade emocional que reverberava até o encontro seguinte.”',
+        'Feedback do cliente (Slide adicional).'
       ]
     },
     '3': {
